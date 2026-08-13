@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stanford CS 312 | Deep Learning Alchemy</title>
+    <meta
+      name="description"
+      content="Official course website for Stanford CS 312: Deep Learning Alchemy (Fall 2026), including logistics, schedule, assignments, and course materials."
+    />
+    <meta
+      name="robots"
+      content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"
+    />
+    <meta name="author" content="Stanford CS 312 Staff" />
+    <link rel="canonical" href="https://cs312.stanford.edu/" />
+    <link rel="icon" type="image/png" href="/assets/images/alchemy_mock.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Stanford CS 312 | Deep Learning Alchemy"
+    />
+    <meta
+      property="og:description"
+      content="Official course website for Stanford CS 312: Deep Learning Alchemy (Fall 2026), including logistics, schedule, assignments, and course materials."
+    />
+    <meta property="og:url" content="https://cs312.stanford.edu/" />
+    <meta property="og:site_name" content="Stanford CS 312" />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Stanford CS 312 | Deep Learning Alchemy"
+    />
+    <meta
+      name="twitter:description"
+      content="Official course website for Stanford CS 312: Deep Learning Alchemy (Fall 2026), including logistics, schedule, assignments, and course materials."
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "CS 312: Deep Learning Alchemy",
+        "courseCode": "CS 312",
+        "description": "Stanford course focused on mastering the empirical phenomena and experimental skills involved in deep neural networks.",
+        "provider": {
+          "@type": "CollegeOrUniversity",
+          "name": "Stanford University",
+          "url": "https://www.stanford.edu"
+        },
+        "url": "https://cs312.stanford.edu/",
+        "inLanguage": "en"
+      }
+    </script>
+    <style>
+      #shuffle-container {
+        visibility: hidden;
+      }
+      /* #previous-offerings[hidden] {
+        display: none;
+      } */
+    </style>
+    <noscript
+      ><style>
+        #shuffle-container {
+          visibility: visible;
+        }
+      </style></noscript
+    >
+    <script>
+      // Shuffle instructors and CAs within their role groups
+      document.addEventListener("DOMContentLoaded", () => {
+        const container = document.getElementById("shuffle-container");
+        if (container) {
+          const children = Array.from(container.children);
+
+          const shuffle = (items) => {
+            const copy = [...items];
+            for (let i = copy.length - 1; i > 0; i -= 1) {
+              const j = Math.floor(Math.random() * (i + 1));
+              if (i !== j) {
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+              }
+            }
+            return copy;
+          };
+
+          container.replaceChildren(
+            ...shuffle(children.slice(0, 2)),
+            ...shuffle(children.slice(2)),
+          );
+          container.style.visibility = "visible";
+        }
+
+        /* const offeringsToggle = document.getElementById(
+          "toggle-previous-offerings",
+        );
+        const offeringsList = document.getElementById("previous-offerings");
+        if (offeringsToggle && offeringsList) {
+          offeringsToggle.addEventListener("click", () => {
+            const isHidden = offeringsList.hasAttribute("hidden");
+            if (isHidden) {
+              offeringsList.removeAttribute("hidden");
+              offeringsList.setAttribute("aria-hidden", "false");
+              offeringsToggle.setAttribute("aria-expanded", "true");
+            } else {
+              offeringsList.setAttribute("hidden", "");
+              offeringsList.setAttribute("aria-hidden", "true");
+              offeringsToggle.setAttribute("aria-expanded", "false");
+            }
+          });
+        } */
+      });
+    </script>
+    <!-- bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div id="construction-banner" role="status">
+      Course website under construction
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand brand" href="/">
+            <img
+              class="brand-icon"
+              src="/assets/images/alchemy_mock.png"
+              alt=""
+              width="28"
+              height="28"
+            />
+            <span>CS 312</span>
+          </a>
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1"
+            aria-expanded="false"
+            aria-label="Toggle navigation menu"
+          >
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-right">
+              <a href="#coursework">Coursework</a>
+            </li>
+            <li class="navbar-right">
+              <a href="#schedule">Schedule</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main id="main-content">
+    <div id="header" style="text-align: center">
+      <h1>CS 312: Deep Learning Alchemy</h1>
+      <p class="term-line">
+        Stanford / Fall 2026
+        <!-- Previous offerings temporarily hidden.
+        <span
+          style="
+            position: relative;
+            font-weight: 300;
+            font-size: 16px;
+            margin-left: 6px;
+          "
+          >(<button
+            id="toggle-previous-offerings"
+            type="button"
+            aria-controls="previous-offerings"
+            aria-expanded="false"
+            style="
+              color: #7030A0;
+              text-decoration: underline;
+              background: none;
+              border: 0;
+              padding: 0;
+              font: inherit;
+              line-height: inherit;
+              cursor: pointer;
+            "
+          >
+            previous offerings</button
+          >)
+          <span
+            id="previous-offerings"
+            hidden
+            aria-hidden="true"
+            style="
+              position: absolute;
+              left: 50%;
+              transform: translateX(-50%);
+              top: 100%;
+              background: #fff;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              padding: 4px 12px;
+              font-size: 16px;
+              font-weight: 300;
+              white-space: nowrap;
+              box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+              z-index: 100;
+            "
+          >
+            <a href="/spring2025/" style="color: #7030A0">Spring 2025</a> |
+            <a href="/spring2024/" style="color: #7030A0">Spring 2024</a>
+          </span>
+        </span>
+        -->
+      </p>
+      <!-- Previous offerings temporarily hidden.
+      <noscript>
+        <p
+          style="
+            text-align: center;
+            margin-top: 6px;
+            margin-bottom: 0;
+            font-size: 16px;
+          "
+        >
+          Previous offerings: <a href="/spring2025/">Spring 2025</a> |
+          <a href="/spring2024/">Spring 2024</a>
+        </p>
+      </noscript>
+      -->
+    </div>
+    <!-- Intro -->
+    <!-- Staff Info -->
+    <div class="container sec" id="people">
+      <!-- <div class="row"> -->
+      <div class="col">
+        <h2>Course Staff</h2>
+        <div id="shuffle-container">
+          <div class="instructor">
+            <a href="https://thashim.github.io/">
+              <div class="instructorphoto">
+                <picture>
+                  <source srcset="/assets/images/thashim.webp" type="image/webp" />
+                  <img
+                    src="/assets/images/thashim.jpeg"
+                    alt="Tatsunori Hashimoto headshot"
+                    width="120"
+                    height="120"
+                  />
+                </picture>
+              </div>
+              <div>Tatsunori Hashimoto</div>
+            </a>
+            <div>Instructor</div>
+          </div>
+          <div class="instructor">
+            <a href="https://kothasuhas.github.io/">
+              <div class="instructorphoto">
+                <picture>
+                  <img
+                    src="/assets/images/suhas.jpg"
+                    alt="Suhas Kotha headshot"
+                    width="120"
+                    height="120"
+                  />
+                </picture>
+              </div>
+              <div>Suhas Kotha</div>
+            </a>
+            <div>Instructor</div>
+          </div>
+          <div class="instructor">
+            <a href="https://whenwen.github.io/">
+              <div class="instructorphoto">
+                <img
+                  src="/assets/images/kaiyue.jpg"
+                  alt="Kaiyue Wen headshot"
+                  width="120"
+                  height="120"
+                />
+              </div>
+              <div>Kaiyue Wen</div>
+            </a>
+            <div>CA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Logistics -->
+    <div class="sechighlight">
+      <div class="container sec" id="logistics">
+        <h2>Logistics</h2>
+        <ul>
+          <li>
+            <b>Lectures:</b> Tues/Thurs, 1:30-2:50pm in
+            CoDa B90
+          </li>
+          <li>
+            <b>Recordings:</b> TBA
+          </li>
+          <li>
+            <b>Office hours:</b> TBA
+          </li>
+          <li>
+            <b>Contact:</b> TBA
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Content -->
+    <div class="container sec" id="content">
+      <h2>Content</h2>
+      <h3>What is this course about?</h3>
+      <p>
+        Deep learning is now the foundation of all of machine learning and AI,
+        making it more important than ever for students to obtain mastery of the
+        empirical phenomena and experimental skills involved in deep neural
+        networks. How can students acquire the skills necessary to invent the
+        next generation of architectures or develop new broad theories of how
+        deep learning works? This course takes the stance that knowledge or math
+        abilities alone are not enough, and there is no substitute to getting
+        your hands dirty and running many, many experiments. To this end, we
+        will work through single computationally tractable domains and take
+        students through the process of obtaining mastery in this domain through
+        efficient experimentation and experiment outcome prediction.
+      </p>
+      <h3>Prerequisites</h3>
+      <ul>
+        <li><b>Machine learning:</b> This class is a non-standard introduction to deep learning. Since we want to spend more time teaching experiment design and deep learning intuition, we will spend little time explaining precise details that other deep learning classes cover (e.g. backpropagation rules, efficient implementations, etc.). Therefore, it will be helpful to have familiarity with deep learning prior to enrolling (via courses such as CS 221, CS 229, CS 230, CS 124, CS 224N). Nonetheless, all the assignments are self-contained and we are particularly excited for this course to be a first introduction for students with no deep learning background (though it will require more work at the start of the course).</li>
+        <li><b>Math:</b> Students should be familiar with college calculus and linear algebra (e.g. MATH 51, CME 100) and basic probability/statistics (e.g. CS 109 or equivalent).</li>
+        <li><b>Programming:</b> All class assignments and quizzes will be in Python. Since we will provide scaffolding and support AI usage for assignments, it is not critical to be skilled at implementation. However, quizzes will assume understanding of the provided codebase and any short implementation diffs. </li>
+      </ul>
+      <p>
+        Note that this is a 5-unit class. This is a very experiment-heavy and quiz-heavy
+        class, so please allocate enough time for it.
+      </p>
+    </div>
+    <!-- Coursework -->
+    <!-- Note the margin-top:-20px and the <br> serve to make the #coursework hyperlink display correctly (with the h2 header visible) -->
+    <div class="sechighlight">
+      <div class="container sec" id="coursework" style="margin-top: -20px">
+        <br />
+        <h2>Coursework</h2>
+        <h3>Structure</h3>
+        <p>The goal of this class is to develop human intuition for the variety of strange deep learning phenomena that exist in the real world. Our two core beliefs are:</p>
+        <ul>
+          <li><b>Alchemy is learned by hand:</b> Deep learning has many mysteries and surprises that are not well understood by the best researchers, let alone deep learning classes. As such, many classes teach mental models that are not supported by an empiricist's experience (e.g. classic bias-variance tradeoff disagrees with the current scaling era). This class will teach students how to design clean experiments that enable them to build intuition for themselves.</li>
+          <li><b>Prediction is understanding:</b> To build a scientific understanding is to be able to predict the outcome of an experiment before running it. Therefore, this class assesses human understanding via quizzes where students have to predict experiment outcomes.</li>
+        </ul>
+        <p>Therefore, students will alternate between running experiments to understand a given unit (e.g. architecture stability) and taking quizzes testing their understanding. A typical week looks like:</p>
+        <ul>
+          <li>
+            Tuesday: Assignment for the unit is released
+            <ul>
+              <li>The assignment scopes out empirical phenomena that students will best understand through designing clean experiments.</li>
+              <li>Students will eventually submit a report with plots/tables explaining the experiments they ran.</li>
+            </ul>
+          </li>
+          <li>Thursday: Lecture explaining common intuitions for the unit</li>
+          <li>
+            Monday: Student reports are due
+            <ul>
+              <li>Note that the assignment is not graded and is only useful for partial credit on the quiz.</li>
+              <li>The reports may inspire questions that appear on the quiz.</li>
+            </ul>
+          </li>
+          <li>
+            Tuesday: A 40-minute experiment prediction quiz is administered
+            <ul>
+              <li>Each quiz question will correspond to a held-out experiment related to the unit that the instructors have run. The student will be given a description of the experiment (including code diff) and asked to predict the outcome of the experiment.</li>
+              <li>Quiz questions will span easy, medium, and hard difficulty depending on how much extrapolation they require from the assignment suggestions.</li>
+              <li>During this quiz, students will not be allowed to refer to any external resources including their report. Students can cite their report in the quiz and can receive partial credit if their reasoning appears sound.</li>
+              <li>Immediately after the quiz, the instructors will cover the answers and foster discussion among the students.</li>
+            </ul>
+          </li>
+        </ul>
+        <h3>Assignments</h3>
+        <p>Assignments 1 through 6 will study language model pre-training at a small scale reflective of larger scale phenomena. Assignment 7 will study a new modality, and Assignments 8 through 9 are still a mystery.</p>
+        <ul>
+          <li><b>Assignment 1</b>: Basics</li>
+          <li><b>Assignment 2</b>: Architecture 1</li>
+          <li><b>Assignment 3</b>: Architecture 2</li>
+          <li><b>Assignment 4</b>: Optimization 1</li>
+          <li><b>Assignment 5</b>: Optimization 2</li>
+          <li><b>Assignment 6</b>: Generalization 1</li>
+          <li><b>Assignment 7</b>: Generalization 2</li>
+          <li><b>Assignment 8</b>: Exotic 1</li>
+          <li><b>Assignment 9</b>: Exotic 2</li>
+        </ul>
+        All (currently tentative) deadlines are listed in the
+        <a href="#schedule">schedule</a>.
+
+        <h3>Grading</h3>
+
+        <p>TBA</p>
+
+        <h3>GPU compute for self-study</h3>
+
+        <p>If you are following along at home, you can access GPU compute from a cloud provider to complete the assignments.</p>
+
+        <p>Here are a few options (public pricing for a single B200 GPU on March 28, 2026):</p>
+
+        <ul>
+            <li><a href="https://modal.com">Modal</a> (sponsor): <b>$6.25/hour</b>. Offers $30 of free monthly compute. You are only charged for actual compute (no idle resources) and their UX makes switching between local dev and
+          large-scale gpu experiments simple. (<a href="https://modal.com/pricing">Modal Pricing</a>)</li>
+            <li><a href="https://lambda.ai">Lambda Labs</a>: <b>$6.69/hour</b> (<a href="https://lambda.ai/pricing">Lambda Pricing</a>)</li>
+            <li><a href="https://www.runpod.io">RunPod</a>: <b> $4.99/hour</b> (<a href="https://www.runpod.io/pricing">RunPod Pricing</a>)</li>
+            <li><a href="https://nebius.com/">Nebius</a>: <b>$5.50/hour</b> ($3.05/hour preemptible) (<a href="https://nebius.com/prices">Nebius Pricing</a>)</li>
+            <li><a href="https://www.together.ai/">Together</a>: <b>$7.49/hour</b>, minimum 8 GPUs, cheaper for longer commitments (<a href="https://www.together.ai/pricing#gpu-clusters">Together Pricing</a>)</li>
+        </ul>
+
+        <h3>Honor code</h3>
+        Like all other classes at Stanford, we take the student
+        <a href="https://ed.stanford.edu/academics/masters-handbook/honor-code"
+          >Honor Code</a
+        >
+        seriously. Please respect the following policies:
+        <ul>
+          <li>
+            <b>Collaboration</b>: It is important for students to run their own experiments to deeply understand the phenomena. Therefore, we do not permit any discussion about experiments before the associated quiz.
+          </li>
+          <li>
+            <b>AI tools</b>: We view assignments as instrumental to improving human understanding. Therefore, we support AI usage on assignments for implementation, visualization, mock quizzes, etc. However, since grades will be primarily determined by quiz performance, we encourage students to be thoughtful about what AI usage enhances their ability to digest phenomena (as measured by their ability to predict experiment outcomes).
+          </li>
+        </ul>
+
+        <h3>Submitting coursework</h3>
+        <ul>
+          <li>
+            All coursework is submitted via Gradescope by the deadline (not by email). You can submit as many times as you'd like until the deadline: we will only grade the last submission.
+          </li>
+          <li>
+            Since assignment reports are not necessary to take the quiz, we will not accept <i>any</i> late reports.
+          </li>
+          <li>
+            If you believe that the course staff made an objective error in
+          grading, you may submit a regrade request on Gradescope within 3 days
+          after the grades are released.
+          </li>
+        </ul>
+        <h3>Taking quizzes</h3>
+        <ul>
+          <li>
+            Grades are primarily determined by quiz performance. Therefore, <b>attendance is mandatory</b> every Tuesday.
+          </li>
+          <li>To account for unrepresentative quiz scores and unplanned absences, we will drop each student's three lowest quiz scores.</li>
+        </ul>
+        <h3>Sponsor</h3>
+        <p>
+          We would like to thank <a href="https://modal.jobs/">Modal</a> for sponsoring compute for this class.
+        </p>
+      </div>
+    </div>
+    <!-- Schedule -->
+    <!-- Note the margin-top:-20px and the <br> serve to make the #schedule hyperlink display correctly (with the h2 header visible) -->
+    <div class="container sec" id="schedule" style="margin-top: -20px">
+      <br />
+      <h2>
+        Schedule
+        <span class="schedule-playlist">(YouTube playlist TBA)</span>
+      </h2>
+      <table class="table" style="margin-bottom: 10rem">
+        <colgroup>
+          <col style="width: 5%" />
+          <col style="width: 15%" />
+          <col style="width: 30%" />
+          <col style="width: 20%" />
+          <col style="width: 20%" />
+        </colgroup>
+        <thead>
+          <tr class="active">
+            <th>#</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Course Materials</th>
+            <th>Assignments</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Tue September 22</td>
+            <td>Intro</td>
+            <td>TBA</td>
+            <td class="assignment-block" rowspan="2">
+              Assignment 1 out<br />(due 09/28)
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Thu September 24</td>
+            <td>Lecture: Basics</td>
+            <td>TBA</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Tue September 29</td>
+            <td class="quiz-entry">&ensp;Quiz: Basics</td>
+            <td>TBA</td>
+            <td class="assignment-block" rowspan="2">
+              Assignment 2 out<br />(due 10/05)
+            </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Thu October 1</td>
+            <td>Lecture: Architecture 1</td>
+            <td>TBA</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Tue October 6</td>
+            <td class="quiz-entry">&ensp;Quiz: Architecture 1</td>
+            <td>TBA</td>
+            <td class="assignment-block" rowspan="2">
+              Assignment 3 out<br />(due 10/12)
+            </td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Thu October 8</td>
+            <td>Lecture: Architecture 2</td>
+            <td>TBA</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Tue October 13</td>
+            <td class="quiz-entry">&ensp;Quiz: Architecture 2</td>
+            <td>TBA</td>
+            <td class="assignment-block" rowspan="2">
+              Assignment 4 out<br />(due 10/19)
+            </td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Thu October 15</td>
+            <td>Lecture: Optimization 1</td>
+            <td>TBA</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>Tue October 20</td>
+            <td class="quiz-entry">&ensp;Quiz: Optimization 1</td>
+            <td>TBA</td>
+            <td class="assignment-block" rowspan="2">
+              Assignment 5 out<br />(due 10/26)
+            </td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Thu October 22</td>
+            <td>Lecture: Optimization 2</td>
+            <td>TBA</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>Tue October 27</td>
+            <td class="quiz-entry">&ensp;Quiz: Optimization 2</td>
+            <td>TBA</td>
+            <td class="assignment-block" rowspan="3">
+              Assignment 6 out<br />(due 11/04)
+            </td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>Thu October 29</td>
+            <td>Lecture: Generalization 1</td>
+            <td>TBA</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Tue November 3</td>
+            <td><i>No class (Democracy Day)</i></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>Thu November 5</td>
+            <td class="quiz-entry">&ensp;Quiz: Generalization 1</td>
+            <td>TBA</td>
+            <td class="assignment-block" rowspan="2">
+              Assignment 7 out<br />(due 11/11)
+            </td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>Tue November 10</td>
+            <td>Lecture: Generalization 2</td>
+            <td>TBA</td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>Thu November 12</td>
+            <td class="quiz-entry">&ensp;Quiz: Generalization 2</td>
+            <td>TBA</td>
+            <td class="assignment-block" rowspan="2">
+              Assignment 8 out<br />(due 11/18)
+            </td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>Tue November 17</td>
+            <td>Lecture: Exotic 1</td>
+            <td>TBA</td>
+          </tr>
+          <tr>
+            <td>17</td>
+            <td>Thu November 19</td>
+            <td class="quiz-entry">&ensp;Quiz: Exotic 1</td>
+            <td>TBA</td>
+            <td class="assignment-block" rowspan="4">
+              Assignment 9 out<br />(due 12/02)
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Tue November 24</td>
+            <td><i>No class (Thanksgiving Recess)</i></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Thu November 26</td>
+            <td><i>No class (Thanksgiving Recess)</i></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>18</td>
+            <td>Tue December 1</td>
+            <td>Lecture: Exotic 2</td>
+            <td>TBA</td>
+          </tr>
+          <tr>
+            <td>19</td>
+            <td>Thu December 3</td>
+            <td class="quiz-entry">&ensp;Quiz: Exotic 2</td>
+            <td>TBA</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </main>
+    <!-- jQuery and Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!-- Add whitespace to ensure schedule is visible when banner is active -->
+    <!-- <div style="height: 200px;"></div> -->
+  </body>
+</html>
