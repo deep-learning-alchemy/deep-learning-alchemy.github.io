@@ -201,11 +201,11 @@ h3 {
   margin: 12px 0;
 }
 
-.example-problems-dropdown {
+.large-content-dropdown {
   margin: 16px 0;
 }
 
-.example-problems-dropdown > summary {
+.large-content-dropdown > summary {
   border: 1px solid #ddd;
   color: #7030A0;
   cursor: pointer;
@@ -215,11 +215,11 @@ h3 {
   padding: 10px 12px;
 }
 
-.example-problems-dropdown > summary::-webkit-details-marker {
+.large-content-dropdown > summary::-webkit-details-marker {
   display: none;
 }
 
-.example-problems-dropdown > summary::before {
+.large-content-dropdown > summary::before {
   border-bottom: 6px solid transparent;
   border-left: 9px solid currentColor;
   border-top: 6px solid transparent;
@@ -230,8 +230,12 @@ h3 {
   transition: transform 0.15s ease;
 }
 
-.example-problems-dropdown[open] > summary::before {
+.large-content-dropdown[open] > summary::before {
   transform: rotate(90deg);
+}
+
+.example-schedule-dropdown > ul {
+  margin-top: 10px;
 }
 
 .example-problems-dropdown .table-responsive {

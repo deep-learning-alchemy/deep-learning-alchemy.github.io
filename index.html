@@ -138,28 +138,6 @@
             />
             <span>CS 312</span>
           </a>
-          <button
-            type="button"
-            class="navbar-toggle collapsed"
-            data-toggle="collapse"
-            data-target="#bs-example-navbar-collapse-1"
-            aria-expanded="false"
-            aria-label="Toggle navigation menu"
-          >
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="navbar-right">
-              <a href="#coursework">Coursework</a>
-            </li>
-            <li class="navbar-right">
-              <a href="#schedule">Schedule</a>
-            </li>
-          </ul>
         </div>
       </div>
     </nav>
@@ -342,7 +320,7 @@
       </p>
       <h3>Prerequisites</h3>
       <p>
-        <b>Note:</b> This is a 5-unit class. It will require running a lot of experiments and taking difficult quizzes, and we don't intend to apply inflated grading curves. Please make a well-informed decision if you have the appropriate background and/or time to take this class.
+        <b>Note:</b> This is a 5-unit class. It will require running a lot of experiments and taking difficult quizzes, and we don't intend to apply inflated grading curves. Please make a well-informed decision if you have the appropriate background and time to take this class.
       </p>
       <ul>
         <li><b>Machine learning:</b> This class is a non-standard introduction to deep learning. Since we want to spend more time teaching experiment design and deep learning intuition, we will spend little time explaining precise details that other deep learning classes cover (e.g. backpropagation rules, efficient implementations, etc.). Therefore, it will be helpful to have familiarity with deep learning prior to enrolling (via courses such as CS 221, CS 229, CS 230, CS 124, CS 224N). Nonetheless, all the assignments are self-contained and we are particularly excited for this course to be a first introduction for students with no deep learning background (though it will require more work at the start of the course).</li>
@@ -362,32 +340,34 @@
           <li><b>Alchemy is learned by hand:</b> Deep learning has many mysteries and surprises that are not well understood by the best researchers, let alone deep learning classes. As such, many classes teach mental models that are not supported by an empiricist's experience (e.g. classic bias-variance tradeoff disagrees with the current scaling era). This class will teach students how to design clean experiments that enable them to build intuition for themselves.</li>
           <li><b>Prediction is understanding:</b> To build a scientific understanding is to be able to predict the outcome of an experiment before running it. Therefore, this class assesses human understanding via quizzes where students have to predict experiment outcomes.</li>
         </ul>
-        <p>Therefore, students will alternate between running experiments to understand a given unit (e.g. architecture stability) and taking quizzes testing their understanding. A typical week looks like:</p>
-        <ul>
-          <li>
+        <p>In this class, students will alternate between running experiments to understand a given unit (e.g. architecture stability) and taking quizzes testing their understanding. Course staff will support student learning with weekly lectures on the unit and weekly tutorial for interactive discussion.</p>
+        <details class="large-content-dropdown example-schedule-dropdown">
+          <summary>Example schedule</summary>
+          <ul>
+            <li>
             Tuesday: Assignment for the unit is released
             <ul>
               <li>The assignment scopes out empirical phenomena that students will best understand through designing clean experiments.</li>
               <li>Students will eventually submit a report with plots/tables explaining the experiments they ran.</li>
             </ul>
-          </li>
-          <li>Thursday: Lecture explaining common intuitions for the unit</li>
-          <li>
+            </li>
+            <li>Thursday: Lecture explaining common intuitions for the unit</li>
+            <li>
             Wednesday, Thursday, or Friday: Tutorial
             <ul>
               <li>Every week, each student is required to meet with three other students and one course staff for 30 minutes.</li>
               <li>During this session, the instructor will ask questions about what experiments each student is running as well as cover practice problems that will help for the quiz. This time can also serve as group office hours.</li>
               <li>Students will receive a full grade given active participation.</li>
             </ul>
-          </li>
-          <li>
+            </li>
+            <li>
             Monday: Student reports are due
             <ul>
               <li>Note that the assignment is not graded and is only useful for partial credit on the quiz.</li>
               <li>The reports may inspire questions that appear on the quiz.</li>
             </ul>
-          </li>
-          <li>
+            </li>
+            <li>
             Tuesday: 40-minute experiment prediction quiz
             <ul>
               <li>Each quiz question will correspond to a thematic held-out experiment run by the instructors. The student will be given a description of the experiment (including code diff) and asked to predict the outcome of the experiment.</li>
@@ -395,9 +375,10 @@
               <li>During this quiz, students will not be allowed to refer to any external resources including their report. Students can cite their report in the quiz and can receive partial credit if their reasoning appears sound.</li>
               <li>Immediately after the quiz, the instructors will cover the answers and discuss mental models with the class.</li>
             </ul>
-          </li>
-        </ul>
-        <details class="example-problems-dropdown">
+            </li>
+          </ul>
+        </details>
+        <details class="large-content-dropdown example-problems-dropdown">
           <summary>Example problem and questions</summary>
           <div class="table-responsive">
             <table class="table table-bordered example-problems-table">
@@ -407,7 +388,7 @@
             </colgroup>
             <tbody>
               <tr>
-                <td><b>Example Problem</b>: Start from the baseline depth 8 transformer that we pre-train on 614M tokens. This transformer (implementation provided below) features multiple components such as prenorm, attention, MLP, residuals, and positional embeddings. In this problem, we want to understand how much each component improves loss. Explore the following directions.
+                <td><b>Example Assignment Problem</b>: Start from the baseline depth 8 transformer that we pre-train on 614M tokens. This transformer (implementation provided below) features multiple components such as prenorm, attention, MLP, residuals, and positional embeddings. In this problem, we want to understand how much each component improves loss. Explore the following directions.
                 <ol type="a">
                   <li>Perform leave-one-out ablations on the role of each component in our current model.</li>
                   <li>...</li>
@@ -456,7 +437,7 @@ class Transformer(nn.Module):
                 </details>
                 </td>
                 <td>
-                  <b>Example Question (Difficulty Easy)</b>: We train each of the following depth-8 transformer variants using the same training recipe and hyperparameters. Rank the variants from lowest to highest final validation loss. Use &lt;, &gt;, or = between the letters; use = when the losses are within 0.01.
+                  <b>Example Quiz Question (Difficulty Easy)</b>: We train each of the following depth-8 transformer variants using the same training recipe and hyperparameters. Rank the variants from lowest to highest final validation loss. Use &lt;, &gt;, or = between the letters; use = when the losses are within 0.01.
                   <ol type="A">
                     <li>Baseline</li>
                     <li>No prenorm</li>
@@ -517,7 +498,7 @@ class Transformer(nn.Module):
 <span class="diff-context">             x = block(x)</span></code></pre>
                   </details>
                   <br>
-                  <b>Example Question (Difficulty Hard)</b>: We train the default transformer as well as a variant where instead of having the residual connection come from the previous layer, we take 0.5 contribution from the previous layer and 0.5 contribution from two layers before (except for the first layer). For each method, we take the best loss over six learning rates {10<sup>&minus;4</sup>, 3 &times; 10<sup>&minus;4</sup>, 10<sup>&minus;3</sup>, 3 &times; 10<sup>&minus;3</sup>, 10<sup>&minus;2</sup>, 3 &times; 10<sup>&minus;2</sup>}. What is your prediction of the loss difference between each method (<i>L<sub>mixed residual</sub></i> &minus; <i>L<sub>default</sub></i>)?
+                  <b>Example Quiz Question (Difficulty Hard)</b>: We train the default transformer as well as a variant where instead of having the residual connection come from the previous layer, we take 0.5 contribution from the previous layer and 0.5 contribution from two layers before (except for the first layer). For each method, we take the best loss over six learning rates {10<sup>&minus;4</sup>, 3 &times; 10<sup>&minus;4</sup>, 10<sup>&minus;3</sup>, 3 &times; 10<sup>&minus;3</sup>, 10<sup>&minus;2</sup>, 3 &times; 10<sup>&minus;2</sup>}. What is your prediction of the loss difference between each method (<i>L<sub>mixed residual</sub></i> &minus; <i>L<sub>default</sub></i>)?
                   <details class="example-code-dropdown question-diff">
                     <summary>Core diff</summary>
                     <pre><code><span class="diff-context">@@ -34,3 +34,9 @@ Transformer.forward</span>
@@ -563,21 +544,6 @@ class Transformer(nn.Module):
 
         <p>Attendance is <b>mandatory</b> on quiz and tutorial sessions. There will be no rescheduling or make-up opportunities except for those covered by accomodations. </p>
 
-        <h3>GPU compute for self-study</h3>
-
-        <p>If you are following along at home, you can access GPU compute from a cloud provider to complete the assignments.</p>
-
-        <p>Here are a few options (public pricing for a single B200 GPU on March 28, 2026):</p>
-
-        <ul>
-            <li><a href="https://modal.com">Modal</a> (sponsor): <b>$6.25/hour</b>. Offers $30 of free monthly compute. You are only charged for actual compute (no idle resources) and their UX makes switching between local dev and
-          large-scale gpu experiments simple. (<a href="https://modal.com/pricing">Modal Pricing</a>)</li>
-            <li><a href="https://lambda.ai">Lambda Labs</a>: <b>$6.69/hour</b> (<a href="https://lambda.ai/pricing">Lambda Pricing</a>)</li>
-            <li><a href="https://www.runpod.io">RunPod</a>: <b> $4.99/hour</b> (<a href="https://www.runpod.io/pricing">RunPod Pricing</a>)</li>
-            <li><a href="https://nebius.com/">Nebius</a>: <b>$5.50/hour</b> ($3.05/hour preemptible) (<a href="https://nebius.com/prices">Nebius Pricing</a>)</li>
-            <li><a href="https://www.together.ai/">Together</a>: <b>$7.49/hour</b>, minimum 8 GPUs, cheaper for longer commitments (<a href="https://www.together.ai/pricing#gpu-clusters">Together Pricing</a>)</li>
-        </ul>
-
         <h3>Honor code</h3>
         Like all other classes at Stanford, we take the student
         <a href="https://ed.stanford.edu/academics/masters-handbook/honor-code"
@@ -607,9 +573,24 @@ class Transformer(nn.Module):
           after the grades are released.
           </li>
         </ul>
+        <h3>GPU compute for self-study</h3>
+
+        <p>If you are following along at home, you can access GPU compute from a cloud provider to complete the assignments.</p>
+
+        <p>Here are a few options (public pricing for a single B200 GPU on March 28, 2026):</p>
+
+        <ul>
+            <li><a href="https://modal.com">Modal</a>: <b>$6.25/hour</b>. Offers $30 of free monthly compute. You are only charged for actual compute (no idle resources) and their UX makes switching between local dev and
+          large-scale gpu experiments simple. (<a href="https://modal.com/pricing">Modal Pricing</a>)</li>
+            <li><a href="https://lambda.ai">Lambda Labs</a>: <b>$6.69/hour</b> (<a href="https://lambda.ai/pricing">Lambda Pricing</a>)</li>
+            <li><a href="https://www.runpod.io">RunPod</a>: <b> $4.99/hour</b> (<a href="https://www.runpod.io/pricing">RunPod Pricing</a>)</li>
+            <li><a href="https://nebius.com/">Nebius</a>: <b>$5.50/hour</b> ($3.05/hour preemptible) (<a href="https://nebius.com/prices">Nebius Pricing</a>)</li>
+            <li><a href="https://www.together.ai/">Together</a>: <b>$7.49/hour</b>, minimum 8 GPUs, cheaper for longer commitments (<a href="https://www.together.ai/pricing#gpu-clusters">Together Pricing</a>)</li>
+        </ul>
         <h3>Sponsor</h3>
         <p>
-          We would like to thank <a href="https://modal.jobs/">Modal</a> for sponsoring compute for this class.
+          TBA
+          <!-- We would like to thank <a href="https://modal.jobs/">Modal</a> for sponsoring compute for this class. -->
         </p>
       </div>
     </div>
