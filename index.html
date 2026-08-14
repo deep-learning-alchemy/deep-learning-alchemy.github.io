@@ -320,12 +320,12 @@
       </p>
       <h3>Prerequisites</h3>
       <p>
-        <b>Note:</b> This is a 5-unit class. It will require running a lot of experiments and taking difficult quizzes, and we don't intend to apply inflated grading curves. Please make a well-informed decision if you have the appropriate background and time to take this class.
+        <b>Note:</b> This is a 5-unit class. It will require running a lot of experiments and taking nine difficult exams, and we don't intend to apply inflated grading curves. Please make a well-informed decision if you have the appropriate background and time to take this class.
       </p>
       <ul>
         <li><b>Machine learning:</b> This class is a non-standard introduction to deep learning. Since we want to spend more time teaching experiment design and deep learning intuition, we will spend little time explaining precise details that other deep learning classes cover (e.g. backpropagation rules, efficient implementations, etc.). Therefore, it will be helpful to have familiarity with deep learning prior to enrolling (via courses such as CS 221, CS 229, CS 230, CS 124, CS 224N). Nonetheless, all the assignments are self-contained and we are particularly excited for this course to be a first introduction for students with no deep learning background (though it will require more work at the start of the course).</li>
         <li><b>Math:</b> Students should be familiar with college calculus and linear algebra (e.g. MATH 51, CME 100) and basic probability/statistics (e.g. CS 109 or equivalent).</li>
-        <li><b>Programming:</b> All class assignments and quizzes will be in Python. Since we will provide scaffolding and support AI usage for assignments, it is not critical to be skilled at implementation. However, quizzes will assume understanding of the provided codebase and any short implementation diffs. </li>
+        <li><b>Programming:</b> All class assignments and exams will be in Python. Since we will provide scaffolding and support AI usage for assignments, it is not critical to be skilled at implementation. However, exams will assume understanding of the provided codebase and any short implementation diffs. </li>
       </ul>
     </div>
     <!-- Coursework -->
@@ -338,9 +338,9 @@
         <p>The goal of this class is to develop human intuition for the variety of strange deep learning phenomena that exist in the real world. Our two core beliefs are:</p>
         <ul>
           <li><b>Alchemy is learned by hand:</b> Deep learning has many mysteries and surprises that are not well understood by the best researchers, let alone deep learning classes. As such, many classes teach mental models that are not supported by an empiricist's experience (e.g. classic bias-variance tradeoff disagrees with the current scaling era). This class will teach students how to design clean experiments that enable them to build intuition for themselves.</li>
-          <li><b>Prediction is understanding:</b> To build a scientific understanding is to be able to predict the outcome of an experiment before running it. Therefore, this class assesses human understanding via quizzes where students have to predict experiment outcomes.</li>
+          <li><b>Prediction is understanding:</b> To build a scientific understanding is to be able to predict the outcome of an experiment before running it. Therefore, this class assesses human understanding via exams where students have to predict experiment outcomes.</li>
         </ul>
-        <p>In this class, students will alternate between running experiments to understand a given unit (e.g. architecture stability) and taking quizzes testing their understanding. Course staff will support student learning with weekly lectures on the unit and weekly tutorial for interactive discussion.</p>
+        <p>In this class, students will alternate between running experiments to understand a given unit (e.g. architecture stability) and taking exams testing their understanding. Course staff will support student learning with weekly lectures on the unit and weekly tutorial for interactive discussion.</p>
         <details class="large-content-dropdown example-schedule-dropdown">
           <summary>Example schedule</summary>
           <ul>
@@ -356,24 +356,24 @@
             Wednesday, Thursday, or Friday: Tutorial
             <ul>
               <li>Every week, each student is required to meet with three other students and one course staff for 30 minutes.</li>
-              <li>During this session, the instructor will ask questions about what experiments each student is running as well as cover practice problems that will help for the quiz. This time can also serve as group office hours.</li>
+              <li>During this session, the instructor will ask questions about what experiments each student is running as well as cover practice problems that will help for the exam. This time can also serve as group office hours.</li>
               <li>Students will receive a full grade given active participation.</li>
             </ul>
             </li>
             <li>
             Monday: Student reports are due
             <ul>
-              <li>Note that the assignment is not graded and is only useful for partial credit on the quiz.</li>
-              <li>The reports may inspire questions that appear on the quiz.</li>
+              <li>Note that the assignment is not graded and is only useful for partial credit on the exam.</li>
+              <li>The reports may inspire questions that appear on the exam.</li>
             </ul>
             </li>
             <li>
-            Tuesday: 40-minute experiment prediction quiz
+            Tuesday: 40-minute experiment prediction exam
             <ul>
-              <li>Each quiz question will correspond to a thematic held-out experiment run by the instructors. The student will be given a description of the experiment (including code diff) and asked to predict the outcome of the experiment.</li>
-              <li>Quiz questions will span easy, medium, and hard difficulty depending on how much extrapolation they require from the assignment suggestions.</li>
-              <li>During this quiz, students will not be allowed to refer to any external resources including their report. Students can cite their report in the quiz and can receive partial credit if their reasoning appears sound.</li>
-              <li>Immediately after the quiz, the instructors will cover the answers and discuss mental models with the class.</li>
+              <li>Each exam question will correspond to a thematic held-out experiment run by the instructors. The student will be given a description of the experiment (including code diff) and asked to predict the outcome of the experiment.</li>
+              <li>Exam questions will span easy, medium, and hard difficulty depending on how much extrapolation they require from the assignment suggestions.</li>
+              <li>During this exam, students will not be allowed to refer to any external resources including their report. Students can cite their report in the exam and can receive partial credit if their reasoning appears sound.</li>
+              <li>Immediately after the exam, the instructors will cover the answers and discuss mental models with the class.</li>
             </ul>
             </li>
           </ul>
@@ -437,7 +437,7 @@ class Transformer(nn.Module):
                 </details>
                 </td>
                 <td>
-                  <b>Example Quiz Question (Difficulty Easy)</b>: We train each of the following depth-8 transformer variants using the same training recipe and hyperparameters. Rank the variants from lowest to highest final validation loss. Use &lt;, &gt;, or = between the letters; use = when the losses are within 0.01.
+                  <b>Example Exam Question (Difficulty Easy)</b>: We train each of the following depth-8 transformer variants using the same training recipe and hyperparameters. Rank the variants from lowest to highest final validation loss. Use &lt;, &gt;, or = between the letters; use = when the losses are within 0.01.
                   <ol type="A">
                     <li>Baseline</li>
                     <li>No prenorm</li>
@@ -498,7 +498,7 @@ class Transformer(nn.Module):
 <span class="diff-context">             x = block(x)</span></code></pre>
                   </details>
                   <br>
-                  <b>Example Quiz Question (Difficulty Hard)</b>: We train the default transformer as well as a variant where instead of having the residual connection come from the previous layer, we take 0.5 contribution from the previous layer and 0.5 contribution from two layers before (except for the first layer). For each method, we take the best loss over six learning rates {10<sup>&minus;4</sup>, 3 &times; 10<sup>&minus;4</sup>, 10<sup>&minus;3</sup>, 3 &times; 10<sup>&minus;3</sup>, 10<sup>&minus;2</sup>, 3 &times; 10<sup>&minus;2</sup>}. What is your prediction of the loss difference between each method (<i>L<sub>mixed residual</sub></i> &minus; <i>L<sub>default</sub></i>)?
+                  <b>Example Exam Question (Difficulty Hard)</b>: We train the default transformer as well as a variant where instead of having the residual connection come from the previous layer, we take 0.5 contribution from the previous layer and 0.5 contribution from two layers before (except for the first layer). For each method, we take the best loss over six learning rates {10<sup>&minus;4</sup>, 3 &times; 10<sup>&minus;4</sup>, 10<sup>&minus;3</sup>, 3 &times; 10<sup>&minus;3</sup>, 10<sup>&minus;2</sup>, 3 &times; 10<sup>&minus;2</sup>}. What is your prediction of the loss difference between each method (<i>L<sub>mixed residual</sub></i> &minus; <i>L<sub>default</sub></i>)?
                   <details class="example-code-dropdown question-diff">
                     <summary>Core diff</summary>
                     <pre><code><span class="diff-context">@@ -34,3 +34,9 @@ Transformer.forward</span>
@@ -538,11 +538,11 @@ class Transformer(nn.Module):
 
         <ul>
           <li><b>15%</b> will come from tutorial participation (with 2 unexcused absences)</li>
-          <li><b>85%</b> will come from quizzes (with 2 quiz drops)</li>
-          <li><b>0%</b> will come from assignments (except for their use as partial credit when cited in the quiz)</li>
+          <li><b>85%</b> will come from exams (with 2 drops out of 9 exams)</li>
+          <li><b>0%</b> will come from assignments (except for their use as partial credit when cited in the exam)</li>
         </ul>
 
-        <p>Attendance is <b>mandatory</b> on quiz and tutorial sessions. There will be no rescheduling or make-up opportunities except for those covered by accomodations. </p>
+        <p>Attendance is <b>mandatory</b> on exam and tutorial sessions. There will be no rescheduling or make-up opportunities except for those covered by accomodations. </p>
 
         <h3>Honor code</h3>
         Like all other classes at Stanford, we take the student
@@ -555,7 +555,7 @@ class Transformer(nn.Module):
             <b>Collaboration</b>: We encourage students to discuss experiment ideas with each other over the week and at tutorial. However, since we believe that running experiments confers deeper understanding, we require all submitted experiments to be run by the student. If you discussed experiments with anyone, please put their names at the top of your assignment.
           </li>
           <li>
-            <b>AI tools</b>: We view assignments as instrumental to improving human understanding. Therefore, we support AI usage on assignments for implementation, visualization, mock quizzes, etc. However, since grades will be primarily determined by quiz performance, we encourage students to be thoughtful about what AI usage enhances their ability to digest phenomena (as measured by their ability to predict experiment outcomes).
+            <b>AI tools</b>: We view assignments as instrumental to improving human understanding. Therefore, we support AI usage on assignments for implementation, visualization, mock exams, etc. However, since grades will be primarily determined by exam performance, we encourage students to be thoughtful about what AI usage enhances their ability to digest phenomena (as measured by their ability to predict experiment outcomes).
           </li>
         </ul>
 
@@ -565,7 +565,7 @@ class Transformer(nn.Module):
             All coursework is submitted via Gradescope by the deadline (not by email). You can submit as many times as you'd like until the deadline: we will only grade the last submission.
           </li>
           <li>
-            Since assignment reports are not necessary to take the quiz, we will not accept <i>any</i> late reports.
+            Since assignment reports are not necessary to take the exam, we will not accept <i>any</i> late reports.
           </li>
           <li>
             If you believe that the course staff (and their models) made an objective error in
@@ -638,7 +638,7 @@ class Transformer(nn.Module):
           <tr>
             <td>3</td>
             <td>Tue September 29</td>
-            <td><span class="schedule-label">Quiz</span>: Basics (Scaling)</td>
+            <td><span class="schedule-label">Exam</span>: Basics (Scaling)</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="2">
               Assignment 2 out<span class="assignment-due-break"><br /></span> (due 10/05)
@@ -653,7 +653,7 @@ class Transformer(nn.Module):
           <tr>
             <td>5</td>
             <td>Tue October 6</td>
-            <td><span class="schedule-label">Quiz</span>: Architecture 1 (Stability)</td>
+            <td><span class="schedule-label">Exam</span>: Architecture 1 (Stability)</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="2">
               Assignment 3 out<span class="assignment-due-break"><br /></span> (due 10/12)
@@ -668,7 +668,7 @@ class Transformer(nn.Module):
           <tr>
             <td>7</td>
             <td>Tue October 13</td>
-            <td><span class="schedule-label">Quiz</span>: Architecture 2 (Capacity)</td>
+            <td><span class="schedule-label">Exam</span>: Architecture 2 (Capacity)</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="2">
               Assignment 4 out<span class="assignment-due-break"><br /></span> (due 10/19)
@@ -683,7 +683,7 @@ class Transformer(nn.Module):
           <tr>
             <td>9</td>
             <td>Tue October 20</td>
-            <td><span class="schedule-label">Quiz</span>: Optimization 1 (Sharpness)</td>
+            <td><span class="schedule-label">Exam</span>: Optimization 1 (Sharpness)</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="2">
               Assignment 5 out<span class="assignment-due-break"><br /></span> (due 10/26)
@@ -698,7 +698,7 @@ class Transformer(nn.Module):
           <tr>
             <td>11</td>
             <td>Tue October 27</td>
-            <td><span class="schedule-label">Quiz</span>: Optimization 2 (NQM)</td>
+            <td><span class="schedule-label">Exam</span>: Optimization 2 (NQM)</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="3">
               Assignment 6 out<span class="assignment-due-break"><br /></span> (due 11/04)
@@ -719,7 +719,7 @@ class Transformer(nn.Module):
           <tr>
             <td>13</td>
             <td>Thu November 5</td>
-            <td><span class="schedule-label">Quiz</span>: Generalization 1 (Data efficiency)</td>
+            <td><span class="schedule-label">Exam</span>: Generalization 1 (Data efficiency)</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="2">
               Assignment 7 out<span class="assignment-due-break"><br /></span> (due 11/11)
@@ -734,7 +734,7 @@ class Transformer(nn.Module):
           <tr>
             <td>15</td>
             <td>Thu November 12</td>
-            <td><span class="schedule-label">Quiz</span>: Generalization 2 (Modality)</td>
+            <td><span class="schedule-label">Exam</span>: Generalization 2 (Modality)</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="2">
               Assignment 8 out<span class="assignment-due-break"><br /></span> (due 11/18)
@@ -749,7 +749,7 @@ class Transformer(nn.Module):
           <tr>
             <td>17</td>
             <td>Thu November 19</td>
-            <td><span class="schedule-label">Quiz</span>: Exotic 1 (???)</td>
+            <td><span class="schedule-label">Exam</span>: Exotic 1 (???)</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="4">
               Assignment 9 out<span class="assignment-due-break"><br /></span> (due 12/02)
@@ -776,7 +776,7 @@ class Transformer(nn.Module):
           <tr>
             <td>19</td>
             <td>Thu December 3</td>
-            <td><span class="schedule-label">Quiz</span>: Exotic 2 (???)</td>
+            <td><span class="schedule-label">Exam</span>: Exotic 2 (???)</td>
             <td>TBA</td>
             <td></td>
           </tr>
