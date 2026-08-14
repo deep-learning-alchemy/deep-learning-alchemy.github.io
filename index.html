@@ -353,7 +353,7 @@
             </li>
             <li>Thursday: Lecture explaining common intuitions for the unit</li>
             <li>
-            Wednesday, Thursday, or Friday: Tutorial
+            Once a week: 30 minute tutorial
             <ul>
               <li>Every week, each student is required to meet with three other students and one course staff for 30 minutes.</li>
               <li>During this session, the instructor will ask questions about what experiments each student is running as well as cover practice problems that will help for the exam. This time can also serve as group office hours.</li>
@@ -498,7 +498,7 @@ class Transformer(nn.Module):
 <span class="diff-context">             x = block(x)</span></code></pre>
                   </details>
                   <br>
-                  <b>Example Exam Question (Difficulty Hard)</b>: We train the default transformer as well as a variant where instead of having the residual connection come from the previous layer, we take 0.5 contribution from the previous layer and 0.5 contribution from two layers before (except for the first layer). For each method, we take the best loss over six learning rates {10<sup>&minus;4</sup>, 3 &times; 10<sup>&minus;4</sup>, 10<sup>&minus;3</sup>, 3 &times; 10<sup>&minus;3</sup>, 10<sup>&minus;2</sup>, 3 &times; 10<sup>&minus;2</sup>}. What is your prediction of the loss difference between each method (<i>L<sub>mixed residual</sub></i> &minus; <i>L<sub>default</sub></i>)?
+                  <b>Example Exam Question (Difficulty Hard)</b>: We train the default 8 layer transformer as well as a variant where instead of having the residual connection come from the previous layer, we take 0.5 contribution from the previous layer and 0.5 contribution from two layers before (except for the first layer). For each method, we take the best loss over six learning rates {10<sup>&minus;4</sup>, 3 &times; 10<sup>&minus;4</sup>, 10<sup>&minus;3</sup>, 3 &times; 10<sup>&minus;3</sup>, 10<sup>&minus;2</sup>, 3 &times; 10<sup>&minus;2</sup>}. What is your prediction of the loss difference between each method (<i>L<sub>mixed residual</sub></i> &minus; <i>L<sub>default</sub></i>)?
                   <details class="example-code-dropdown question-diff">
                     <summary>Core diff</summary>
                     <pre><code><span class="diff-context">@@ -34,3 +34,9 @@ Transformer.forward</span>
@@ -525,9 +525,9 @@ class Transformer(nn.Module):
           <li>Architecture 1: Stability across depth/time</li>
           <li>Architecture 2: Extending model capacity</li>
           <li>Optimization 1: Sharp and flat basins</li>
-          <li>Optimization 2: Noisy quadratic model</li>
+          <li>Optimization 2: Hyperparameter invariants</li>
           <li>Generalization 1: Data-efficient algorithms</li>
-          <li>Generalization 2: New modality</li>
+          <li>Generalization 2: DNA</li>
           <li>Exotic 1: ???</li>
           <li>Exotic 2: ???</li>
         </ol>
@@ -692,13 +692,13 @@ class Transformer(nn.Module):
           <tr>
             <td>10</td>
             <td>Thu October 22</td>
-            <td><span class="schedule-label">Lecture</span>: Optimization 2 (NQM)</td>
+            <td><span class="schedule-label">Lecture</span>: Optimization 2 (Invariants)</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>11</td>
             <td>Tue October 27</td>
-            <td><span class="schedule-label">Exam</span>: Optimization 2 (NQM)</td>
+            <td><span class="schedule-label">Exam</span>: Optimization 2 (Invariants)</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="3">
               Assignment 6 out<span class="assignment-due-break"><br /></span> (due 11/04)
