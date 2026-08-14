@@ -125,9 +125,6 @@
     />
   </head>
   <body>
-    <div id="construction-banner" role="status">
-      Course website under construction
-    </div>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -292,6 +289,18 @@
               <div>Kaiyue Wen</div>
             </a>
             <div>CA</div> -->
+          <div class="instructor">
+            <div class="instructorphoto">
+              <img
+                src="/assets/images/alchemy_mock.png"
+                alt="Course CA placeholder"
+                width="120"
+                height="120"
+              />
+            </div>
+            <div>TBA</div>
+            <div>Course CA</div>
+          </div>
           </div>
         </div>
       </div>
@@ -364,6 +373,14 @@
           </li>
           <li>Thursday: Lecture explaining common intuitions for the unit</li>
           <li>
+            Wednesday, Thursday, or Friday: Tutorial
+            <ul>
+              <li>Every week, each student is required to meet with three other students and one course staff for 30 minutes.</li>
+              <li>During this session, the instructor will ask questions about what experiments each student is running as well as cover practice problems that will help for the quiz. This time can also serve as group office hours.</li>
+              <li>Students will receive a full grade given active participation.</li>
+            </ul>
+          </li>
+          <li>
             Monday: Student reports are due
             <ul>
               <li>Note that the assignment is not graded and is only useful for partial credit on the quiz.</li>
@@ -371,34 +388,180 @@
             </ul>
           </li>
           <li>
-            Tuesday: A 40-minute experiment prediction quiz is administered
+            Tuesday: 40-minute experiment prediction quiz
             <ul>
-              <li>Each quiz question will correspond to a held-out experiment related to the unit that the instructors have run. The student will be given a description of the experiment (including code diff) and asked to predict the outcome of the experiment.</li>
+              <li>Each quiz question will correspond to a thematic held-out experiment run by the instructors. The student will be given a description of the experiment (including code diff) and asked to predict the outcome of the experiment.</li>
               <li>Quiz questions will span easy, medium, and hard difficulty depending on how much extrapolation they require from the assignment suggestions.</li>
               <li>During this quiz, students will not be allowed to refer to any external resources including their report. Students can cite their report in the quiz and can receive partial credit if their reasoning appears sound.</li>
-              <li>Immediately after the quiz, the instructors will cover the answers and foster discussion among the students.</li>
+              <li>Immediately after the quiz, the instructors will cover the answers and discuss mental models with the class.</li>
             </ul>
           </li>
         </ul>
+        <details class="example-problems-dropdown">
+          <summary>Example problem and questions</summary>
+          <div class="table-responsive">
+            <table class="table table-bordered example-problems-table">
+            <colgroup>
+              <col style="width: 50%" />
+              <col style="width: 50%" />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td><b>Example Problem</b>: Start from the baseline depth 8 transformer that we pre-train on 614M tokens. This transformer (implementation provided below) features multiple components such as prenorm, attention, MLP, residuals, and positional embeddings. In this problem, we want to understand how much each component improves loss. Explore the following directions.
+                <ol type="a">
+                  <li>Perform leave-one-out ablations on the role of each component in our current model.</li>
+                  <li>...</li>
+                  <li>...</li>
+                  <li>Understand the role of the residual connection. Can you come up with different schemes that improve the loss benefit of the residual connection?</li>
+                </ol>
+                <details class="example-code-dropdown relevant-code">
+                  <summary>Relevant code snippet</summary>
+                  <pre><code>class Block(nn.Module):
+    def __init__(self, width, ...):
+        super().__init__()
+        self.attn_norm = RMSNorm(width)
+        self.attn = Attention(width, ...)
+        self.mlp_norm = RMSNorm(width)
+        self.mlp = MLP(width, ...)
+
+    def update(self, x):
+        attn = self.attn(self.attn_norm(x))
+        mlp = self.mlp(self.mlp_norm(x + attn))
+        return attn + mlp
+
+    def forward(self, x):
+        return x + self.update(x)
+
+
+class Transformer(nn.Module):
+    def __init__(self, vocab_size, depth=8, ...):
+        super().__init__()
+        self.token_embed = nn.Embedding(vocab_size, ...)
+        self.position_embed = nn.Embedding(...)
+        self.blocks = nn.ModuleList(
+            [Block(...) for _ in range(depth)]
+        )
+        self.final_norm = RMSNorm(...)
+        self.lm_head = nn.Linear(..., vocab_size)
+
+    def forward(self, tokens):
+        positions = torch.arange(
+            tokens.size(1), device=tokens.device
+        )
+        x = self.token_embed(tokens)
+        x = x + self.position_embed(positions)
+        for block in self.blocks:
+            x = block(x)
+        return self.lm_head(self.final_norm(x))</code></pre>
+                </details>
+                </td>
+                <td>
+                  <b>Example Question (Difficulty Easy)</b>: We train each of the following depth-8 transformer variants using the same training recipe and hyperparameters. Rank the variants from lowest to highest final validation loss. Use &lt;, &gt;, or = between the letters; use = when the losses are within 0.01.
+                  <ol type="A">
+                    <li>Baseline</li>
+                    <li>No prenorm</li>
+                    <li>No residual</li>
+                    <li>No MLP</li>
+                    <li>No attention</li>
+                    <li>No positional embeddings</li>
+                  </ol>
+                  <details class="example-code-dropdown question-diff">
+                    <summary>No prenorm diff</summary>
+                    <pre><code><span class="diff-context">@@ -10,4 +10,4 @@ class Block.update</span>
+<span class="diff-context"> def update(self, x):</span>
+<span class="diff-remove">-    attn = self.attn(self.attn_norm(x))</span>
+<span class="diff-add">+    attn = self.attn(x)</span>
+<span class="diff-remove">-    mlp = self.mlp(self.mlp_norm(x + attn))</span>
+<span class="diff-add">+    mlp = self.mlp(x + attn)</span>
+<span class="diff-context">     return attn + mlp</span></code></pre>
+                  </details>
+                  <details class="example-code-dropdown question-diff">
+                    <summary>No residual diff</summary>
+                    <pre><code><span class="diff-context">@@ -16,2 +16,2 @@ class Block.forward</span>
+<span class="diff-context"> def forward(self, x):</span>
+<span class="diff-remove">-    return x + self.update(x)</span>
+<span class="diff-add">+    return self.update(x)</span></code></pre>
+                  </details>
+                  <details class="example-code-dropdown question-diff">
+                    <summary>No MLP diff</summary>
+                    <pre><code><span class="diff-context">@@ -10,4 +10,3 @@ class Block.update</span>
+<span class="diff-context"> def update(self, x):</span>
+<span class="diff-context">     attn = self.attn(self.attn_norm(x))</span>
+<span class="diff-remove">-    mlp = self.mlp(self.mlp_norm(x + attn))</span>
+<span class="diff-remove">-    return attn + mlp</span>
+<span class="diff-add">+    return attn</span></code></pre>
+                  </details>
+                  <details class="example-code-dropdown question-diff">
+                    <summary>No attention diff</summary>
+                    <pre><code><span class="diff-context">@@ -10,4 +10,3 @@ class Block.update</span>
+<span class="diff-context"> def update(self, x):</span>
+<span class="diff-remove">-    attn = self.attn(self.attn_norm(x))</span>
+<span class="diff-remove">-    mlp = self.mlp(self.mlp_norm(x + attn))</span>
+<span class="diff-remove">-    return attn + mlp</span>
+<span class="diff-add">+    mlp = self.mlp(self.mlp_norm(x))</span>
+<span class="diff-add">+    return mlp</span></code></pre>
+                  </details>
+                  <details class="example-code-dropdown question-diff">
+                    <summary>No positional embeddings diff</summary>
+                    <pre><code><span class="diff-context">@@ -22,2 +22,1 @@ Transformer.__init__</span>
+<span class="diff-context">         self.token_embed = nn.Embedding(vocab_size, ...)</span>
+<span class="diff-remove">-        self.position_embed = nn.Embedding(...)</span>
+<span class="diff-context">@@ -30,8 +29,4 @@ Transformer.forward</span>
+<span class="diff-context">     def forward(self, tokens):</span>
+<span class="diff-remove">-        positions = torch.arange(</span>
+<span class="diff-remove">-            tokens.size(1), device=tokens.device</span>
+<span class="diff-remove">-        )</span>
+<span class="diff-context">         x = self.token_embed(tokens)</span>
+<span class="diff-remove">-        x = x + self.position_embed(positions)</span>
+<span class="diff-context">         for block in self.blocks:</span>
+<span class="diff-context">             x = block(x)</span></code></pre>
+                  </details>
+                  <br>
+                  <b>Example Question (Difficulty Hard)</b>: We train the default transformer as well as a variant where instead of having the residual connection come from the previous layer, we take 0.5 contribution from the previous layer and 0.5 contribution from two layers before (except for the first layer). For each method, we take the best loss over six learning rates {10<sup>&minus;4</sup>, 3 &times; 10<sup>&minus;4</sup>, 10<sup>&minus;3</sup>, 3 &times; 10<sup>&minus;3</sup>, 10<sup>&minus;2</sup>, 3 &times; 10<sup>&minus;2</sup>}. What is your prediction of the loss difference between each method (<i>L<sub>mixed residual</sub></i> &minus; <i>L<sub>default</sub></i>)?
+                  <details class="example-code-dropdown question-diff">
+                    <summary>Core diff</summary>
+                    <pre><code><span class="diff-context">@@ -34,3 +34,9 @@ Transformer.forward</span>
+<span class="diff-context"> x_two_back = None</span>
+<span class="diff-context"> for i, block in enumerate(self.blocks):</span>
+<span class="diff-remove">-    x = block(x)</span>
+<span class="diff-add">+    update = block.update(x)</span>
+<span class="diff-add">+    residual = (</span>
+<span class="diff-add">+        x if i == 0</span>
+<span class="diff-add">+        else 0.5 * x + 0.5 * x_two_back</span>
+<span class="diff-add">+    )</span>
+<span class="diff-add">+    x_two_back, x = x, residual + update</span></code></pre>
+                  </details>
+                </td>
+              </tr>
+            </tbody>
+            </table>
+          </div>
+        </details>
         <h3>Assignments</h3>
-        <p>Assignments 1 through 6 will study language model pre-training at a small scale reflective of larger scale phenomena. Assignment 7 will study a new modality, and Assignments 8 through 9 are still a mystery.</p>
-        <ul>
-          <li><b>Assignment 1</b>: Basics</li>
-          <li><b>Assignment 2</b>: Architecture 1</li>
-          <li><b>Assignment 3</b>: Architecture 2</li>
-          <li><b>Assignment 4</b>: Optimization 1</li>
-          <li><b>Assignment 5</b>: Optimization 2</li>
-          <li><b>Assignment 6</b>: Generalization 1</li>
-          <li><b>Assignment 7</b>: Generalization 2</li>
-          <li><b>Assignment 8</b>: Exotic 1</li>
-          <li><b>Assignment 9</b>: Exotic 2</li>
-        </ul>
+        <p><i>Current assignment topics are tentative.</i> Assignments 1 through 6 will study language model pre-training at a small scale reflective of larger scale phenomena. Assignment 7 will study a new modality, and Assignments 8 through 9 are still a mystery.</p>
+        <ol>
+          <li>Basics: Hyperparameter tuning and scaling</li>
+          <li>Architecture 1: Stability across depth/time</li>
+          <li>Architecture 2: Extending model capacity</li>
+          <li>Optimization 1: Sharp and flat basins</li>
+          <li>Optimization 2: Noisy quadratic model</li>
+          <li>Generalization 1: Data-efficient algorithms</li>
+          <li>Generalization 2: New modality</li>
+          <li>Exotic 1: ???</li>
+          <li>Exotic 2: ???</li>
+        </ol>
         All (currently tentative) deadlines are listed in the
         <a href="#schedule">schedule</a>.
 
         <h3>Grading</h3>
 
-        <p>TBA</p>
+        <ul>
+          <li><b>15%</b> will come from tutorial participation (with 2 unexcused absences)</li>
+          <li><b>85%</b> will come from quizzes (with 2 quiz drops)</li>
+          <li><b>0%</b> will come from assignments (except for their use as partial credit when cited in the quiz)</li>
+        </ul>
+
+        <p>Attendance is <b>mandatory</b> on quiz and tutorial sessions. There will be no rescheduling or make-up opportunities except for those covered by accomodations. </p>
 
         <h3>GPU compute for self-study</h3>
 
@@ -423,7 +586,7 @@
         seriously. Please respect the following policies:
         <ul>
           <li>
-            <b>Collaboration</b>: We encourage students to discuss experiment ideas with each other over the week. However, since we believe that running experiments confers deeper understanding, we require all submitted experiments to be run by the student. If you discussed experiments with anyone, please put their names at the top of your assignment.
+            <b>Collaboration</b>: We encourage students to discuss experiment ideas with each other over the week and at tutorial. However, since we believe that running experiments confers deeper understanding, we require all submitted experiments to be run by the student. If you discussed experiments with anyone, please put their names at the top of your assignment.
           </li>
           <li>
             <b>AI tools</b>: We view assignments as instrumental to improving human understanding. Therefore, we support AI usage on assignments for implementation, visualization, mock quizzes, etc. However, since grades will be primarily determined by quiz performance, we encourage students to be thoughtful about what AI usage enhances their ability to digest phenomena (as measured by their ability to predict experiment outcomes).
@@ -439,17 +602,10 @@
             Since assignment reports are not necessary to take the quiz, we will not accept <i>any</i> late reports.
           </li>
           <li>
-            If you believe that the course staff made an objective error in
+            If you believe that the course staff (and their models) made an objective error in
           grading, you may submit a regrade request on Gradescope within 3 days
           after the grades are released.
           </li>
-        </ul>
-        <h3>Taking quizzes</h3>
-        <ul>
-          <li>
-            Grades are primarily determined by quiz performance. Therefore, <b>attendance is mandatory</b> every Tuesday.
-          </li>
-          <li>To account for unrepresentative quiz scores and unplanned absences, we will drop each student's three lowest quiz scores.</li>
         </ul>
         <h3>Sponsor</h3>
         <p>
@@ -469,8 +625,8 @@
         <colgroup>
           <col style="width: 5%" />
           <col style="width: 15%" />
-          <col style="width: 30%" />
-          <col style="width: 20%" />
+          <col style="width: 40%" />
+          <col style="width: 10%" />
           <col style="width: 20%" />
         </colgroup>
         <thead>
@@ -478,7 +634,7 @@
             <th>#</th>
             <th>Date</th>
             <th>Description</th>
-            <th>Course Materials</th>
+            <th>Materials</th>
             <th>Assignments</th>
           </tr>
         </thead>
@@ -486,91 +642,91 @@
           <tr>
             <td>1</td>
             <td>Tue September 22</td>
-            <td>Intro</td>
+            <td><span class="schedule-label">Lecture</span>: Introduction</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="2">
-              Assignment 1 out<br />(due 09/28)
+              Assignment 1 out<span class="assignment-due-break"><br /></span> (due 09/28)
             </td>
           </tr>
           <tr>
             <td>2</td>
             <td>Thu September 24</td>
-            <td>Lecture: Basics</td>
+            <td><span class="schedule-label">Lecture</span>: Basics (Scaling)</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>3</td>
             <td>Tue September 29</td>
-            <td class="quiz-entry">&ensp;Quiz: Basics</td>
+            <td><span class="schedule-label">Quiz</span>: Basics (Scaling)</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="2">
-              Assignment 2 out<br />(due 10/05)
+              Assignment 2 out<span class="assignment-due-break"><br /></span> (due 10/05)
             </td>
           </tr>
           <tr>
             <td>4</td>
             <td>Thu October 1</td>
-            <td>Lecture: Architecture 1</td>
+            <td><span class="schedule-label">Lecture</span>: Architecture 1 (Stability)</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>5</td>
             <td>Tue October 6</td>
-            <td class="quiz-entry">&ensp;Quiz: Architecture 1</td>
+            <td><span class="schedule-label">Quiz</span>: Architecture 1 (Stability)</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="2">
-              Assignment 3 out<br />(due 10/12)
+              Assignment 3 out<span class="assignment-due-break"><br /></span> (due 10/12)
             </td>
           </tr>
           <tr>
             <td>6</td>
             <td>Thu October 8</td>
-            <td>Lecture: Architecture 2</td>
+            <td><span class="schedule-label">Lecture</span>: Architecture 2 (Capacity)</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>7</td>
             <td>Tue October 13</td>
-            <td class="quiz-entry">&ensp;Quiz: Architecture 2</td>
+            <td><span class="schedule-label">Quiz</span>: Architecture 2 (Capacity)</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="2">
-              Assignment 4 out<br />(due 10/19)
+              Assignment 4 out<span class="assignment-due-break"><br /></span> (due 10/19)
             </td>
           </tr>
           <tr>
             <td>8</td>
             <td>Thu October 15</td>
-            <td>Lecture: Optimization 1</td>
+            <td><span class="schedule-label">Lecture</span>: Optimization 1 (Sharpness)</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>9</td>
             <td>Tue October 20</td>
-            <td class="quiz-entry">&ensp;Quiz: Optimization 1</td>
+            <td><span class="schedule-label">Quiz</span>: Optimization 1 (Sharpness)</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="2">
-              Assignment 5 out<br />(due 10/26)
+              Assignment 5 out<span class="assignment-due-break"><br /></span> (due 10/26)
             </td>
           </tr>
           <tr>
             <td>10</td>
             <td>Thu October 22</td>
-            <td>Lecture: Optimization 2</td>
+            <td><span class="schedule-label">Lecture</span>: Optimization 2 (NQM)</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>11</td>
             <td>Tue October 27</td>
-            <td class="quiz-entry">&ensp;Quiz: Optimization 2</td>
+            <td><span class="schedule-label">Quiz</span>: Optimization 2 (NQM)</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="3">
-              Assignment 6 out<br />(due 11/04)
+              Assignment 6 out<span class="assignment-due-break"><br /></span> (due 11/04)
             </td>
           </tr>
           <tr>
             <td>12</td>
             <td>Thu October 29</td>
-            <td>Lecture: Generalization 1</td>
+            <td><span class="schedule-label">Lecture</span>: Generalization 1 (Data efficiency)</td>
             <td>TBA</td>
           </tr>
           <tr>
@@ -582,64 +738,64 @@
           <tr>
             <td>13</td>
             <td>Thu November 5</td>
-            <td class="quiz-entry">&ensp;Quiz: Generalization 1</td>
+            <td><span class="schedule-label">Quiz</span>: Generalization 1 (Data efficiency)</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="2">
-              Assignment 7 out<br />(due 11/11)
+              Assignment 7 out<span class="assignment-due-break"><br /></span> (due 11/11)
             </td>
           </tr>
           <tr>
             <td>14</td>
             <td>Tue November 10</td>
-            <td>Lecture: Generalization 2</td>
+            <td><span class="schedule-label">Lecture</span>: Generalization 2 (Modality)</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>15</td>
             <td>Thu November 12</td>
-            <td class="quiz-entry">&ensp;Quiz: Generalization 2</td>
+            <td><span class="schedule-label">Quiz</span>: Generalization 2 (Modality)</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="2">
-              Assignment 8 out<br />(due 11/18)
+              Assignment 8 out<span class="assignment-due-break"><br /></span> (due 11/18)
             </td>
           </tr>
           <tr>
             <td>16</td>
             <td>Tue November 17</td>
-            <td>Lecture: Exotic 1</td>
+            <td><span class="schedule-label">Lecture</span>: Exotic 1 (???)</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>17</td>
             <td>Thu November 19</td>
-            <td class="quiz-entry">&ensp;Quiz: Exotic 1</td>
+            <td><span class="schedule-label">Quiz</span>: Exotic 1 (???)</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="4">
-              Assignment 9 out<br />(due 12/02)
+              Assignment 9 out<span class="assignment-due-break"><br /></span> (due 12/02)
             </td>
           </tr>
           <tr>
             <td></td>
             <td>Tue November 24</td>
-            <td><i>No class (Thanksgiving Recess)</i></td>
+            <td><i>No class (Thanksgiving Break)</i></td>
             <td></td>
           </tr>
           <tr>
             <td></td>
             <td>Thu November 26</td>
-            <td><i>No class (Thanksgiving Recess)</i></td>
+            <td><i>No class (Thanksgiving Break)</i></td>
             <td></td>
           </tr>
           <tr>
             <td>18</td>
             <td>Tue December 1</td>
-            <td>Lecture: Exotic 2</td>
+            <td><span class="schedule-label">Lecture</span>: Exotic 2 (???)</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>19</td>
             <td>Thu December 3</td>
-            <td class="quiz-entry">&ensp;Quiz: Exotic 2</td>
+            <td><span class="schedule-label">Quiz</span>: Exotic 2 (???)</td>
             <td>TBA</td>
             <td></td>
           </tr>
@@ -647,6 +803,10 @@
       </table>
     </div>
     </main>
+    <footer id="footer" class="container">
+      Course website template adapted from
+      <a href="https://cs336.stanford.edu/spring2025/">Stanford CS336</a>.
+    </footer>
     <!-- jQuery and Bootstrap -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
