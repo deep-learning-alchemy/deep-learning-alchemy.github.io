@@ -316,7 +316,7 @@
         your hands dirty and running many, many experiments. To this end, we
         will work through computationally tractable domains and take
         students through the process of obtaining mastery in this domain through
-        efficient experimentation and experiment outcome prediction.
+        efficient experimentation and experiment outcome prediction. The class will alternate between assignments (where students run experiments to understand deep learning phenomena), exams (where students are tested for their ability to predict held-out experiment outcomes), lectures, and tutorials.
       </p>
       <h3>Prerequisites</h3>
       <p>
@@ -511,6 +511,8 @@ class Transformer(nn.Module):
 <span class="diff-add">+        else 0.5 * x + 0.5 * x_two_back</span>
 <span class="diff-add">+    )</span>
 <span class="diff-add">+    x_two_back, x = x, residual + update</span></code></pre>
+                  <br>
+                  <p><i>Note: both of these questions are hard, do not get discouraged if you do not have intuition for them without running experiments from the assignment!</i></p>
                   </details>
                 </td>
               </tr>
