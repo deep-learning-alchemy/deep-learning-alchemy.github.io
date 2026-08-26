@@ -605,8 +605,7 @@ class Transformer(nn.Module):
         <colgroup>
           <col style="width: 5%" />
           <col style="width: 17%" />
-          <col style="width: 11%" />
-          <col style="width: 29%" />
+          <col style="width: 40%" />
           <col style="width: 10%" />
           <col style="width: 28%" />
         </colgroup>
@@ -614,7 +613,6 @@ class Transformer(nn.Module):
           <tr class="active">
             <th>#</th>
             <th>Date</th>
-            <th>Instructor</th>
             <th>Description</th>
             <th>Materials</th>
             <th>Assignments</th>
@@ -624,7 +622,6 @@ class Transformer(nn.Module):
           <tr>
             <td>1</td>
             <td>Tue September 22</td>
-            <td>Suhas / Tatsu</td>
             <td><span class="schedule-label">Lecture</span>: Introduction</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="2">Assignment 1 out<span class="assignment-due-break"><br /></span> (due 09/28)</td>
@@ -632,14 +629,12 @@ class Transformer(nn.Module):
           <tr>
             <td>2</td>
             <td>Thu September 24</td>
-            <td>Tatsu</td>
             <td><span class="schedule-label">Lecture</span>: Basics</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>3</td>
             <td>Tue September 29</td>
-            <td>Suhas</td>
             <td><span class="schedule-label">Quiz</span>: Basics</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="3">Assignment 2 out<span class="assignment-due-break"><br /></span> (due 10/07)</td>
@@ -647,21 +642,18 @@ class Transformer(nn.Module):
           <tr>
             <td>4</td>
             <td>Thu October 1</td>
-            <td>Tatsu</td>
             <td><span class="schedule-label">Lecture</span>: Optimization 1</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td></td>
             <td>Tue October 6</td>
-            <td>Tatsu</td>
             <td><span class="schedule-label">Lecture</span>: Optimization 1</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>5</td>
             <td>Thu October 8</td>
-            <td>Tatsu</td>
             <td><span class="schedule-label">Quiz</span>: Optimization 1</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="3">Assignment 3 out<span class="assignment-due-break"><br /></span> (due 10/19)</td>
@@ -669,21 +661,18 @@ class Transformer(nn.Module):
           <tr>
             <td>6</td>
             <td>Tue October 13</td>
-            <td>Suhas</td>
             <td><span class="schedule-label">Lecture</span>: Optimization 2</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td></td>
             <td>Thu October 15</td>
-            <td>Suhas</td>
             <td><span class="schedule-label">Lecture</span>: Optimization 2</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>7</td>
             <td>Tue October 20</td>
-            <td>Suhas</td>
             <td><span class="schedule-label">Quiz</span>: Optimization 2</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="3">Assignment 4 out<span class="assignment-due-break"><br /></span> (due 10/28)</td>
@@ -691,21 +680,18 @@ class Transformer(nn.Module):
           <tr>
             <td>8</td>
             <td>Thu October 22</td>
-            <td>Tatsu</td>
             <td><span class="schedule-label">Lecture</span>: Architecture 1</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td></td>
             <td>Tue October 27</td>
-            <td>Tatsu</td>
             <td><span class="schedule-label">Lecture</span>: Architecture 1</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>9</td>
             <td>Thu October 29</td>
-            <td>Tatsu</td>
             <td><span class="schedule-label">Quiz</span>: Architecture 1</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="3">Assignment 5 out<span class="assignment-due-break"><br /></span> (due 11/09)</td>
@@ -713,21 +699,18 @@ class Transformer(nn.Module):
           <tr>
             <td></td>
             <td>Tue November 3</td>
-            <td></td>
             <td><i>No class (Democracy Day)</i></td>
             <td></td>
           </tr>
           <tr>
             <td>10</td>
             <td>Thu November 5</td>
-            <td>Tatsu</td>
             <td><span class="schedule-label">Lecture</span>: Architecture 2</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>11</td>
             <td>Tue November 10</td>
-            <td>Tatsu</td>
             <td><span class="schedule-label">Quiz</span>: Architecture 2</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="3">Assignment 6 out<span class="assignment-due-break"><br /></span> (due 11/18)</td>
@@ -735,21 +718,18 @@ class Transformer(nn.Module):
           <tr>
             <td>12</td>
             <td>Thu November 12</td>
-            <td>Suhas</td>
             <td><span class="schedule-label">Lecture</span>: Generalization</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td></td>
             <td>Tue November 17</td>
-            <td>Suhas</td>
             <td><span class="schedule-label">Lecture</span>: Generalization</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>13</td>
             <td>Thu November 19</td>
-            <td>Suhas</td>
             <td><span class="schedule-label">Quiz</span>: Generalization</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="4">Assignment 7 out<span class="assignment-due-break"><br /></span> (due 12/02)</td>
@@ -757,28 +737,24 @@ class Transformer(nn.Module):
           <tr>
             <td></td>
             <td>Tue November 24</td>
-            <td></td>
             <td><i>No class (Thanksgiving Recess)</i></td>
             <td></td>
           </tr>
           <tr>
             <td></td>
             <td>Thu November 26</td>
-            <td></td>
             <td><i>No class (Thanksgiving Recess)</i></td>
             <td></td>
           </tr>
           <tr>
             <td>14</td>
             <td>Tue December 1</td>
-            <td>Suhas</td>
             <td><span class="schedule-label">Lecture</span>: Exotic</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>15</td>
             <td>Thu December 3</td>
-            <td>Suhas</td>
             <td><span class="schedule-label">Quiz</span>: Exotic</td>
             <td>TBA</td>
             <td></td>

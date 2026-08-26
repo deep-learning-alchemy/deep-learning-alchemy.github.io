@@ -505,10 +505,9 @@ h3 {
     clear: both;
     border-top: 1px solid #e8e8e8;
   }
-  #schedule td:nth-of-type(3):before { content: "Instructor"; }
-  #schedule td:nth-of-type(4):before { content: "Topic"; }
-  #schedule td:nth-of-type(5):before { content: "Materials"; }
-  #schedule td:nth-of-type(6):before { content: "Assignment"; }
+  #schedule td:nth-of-type(3):before { content: "Topic"; }
+  #schedule td:nth-of-type(4):before { content: "Materials"; }
+  #schedule td:nth-of-type(5):before { content: "Assignment"; }
 
   #schedule .schedule-label {
     display: inline;
