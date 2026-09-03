@@ -23,6 +23,23 @@ a:focus {
   margin-bottom: 20px;
 }
 
+.enrollment-announcement {
+  background-color: #fff;
+  border: 2px solid #b00020;
+  border-radius: 4px;
+  color: #000;
+  margin-bottom: 20px;
+  padding: 16px 20px;
+}
+
+.enrollment-announcement p {
+  margin: 0 0 10px;
+}
+
+.enrollment-announcement p:last-child {
+  margin-bottom: 0;
+}
+
 h1 {
   font-size: 30px;
   font-weight: 300;
