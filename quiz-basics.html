@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deep Learning Alchemy | Basics Prediction Quiz</title>
+    <meta
+      name="description"
+      content="Take the CS 312 Basics outcome-prediction quiz and review the answers after submitting."
+    />
+    <link rel="icon" type="image/png" href="/assets/images/alchemy_mock.png" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="quiz-basics.css" />
+  </head>
+  <body class="quiz-page">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand brand" href="/">
+            <img
+              class="brand-icon"
+              src="/assets/images/alchemy_mock.png"
+              alt=""
+              width="28"
+              height="28"
+            />
+            <span>CS 312</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container quiz-shell">
+      <header class="quiz-hero">
+        <h1>Outcome Prediction Quiz: Basics</h1>
+        <p class="quiz-meta">95 points · 40 minutes · 8 questions</p>
+        <div class="quiz-actions">
+          <a
+            class="quiz-button quiz-button-secondary"
+            href="assets/quizzes/basics_prediction_quiz.pdf"
+            target="_blank"
+            rel="noopener"
+          >View in PDF form</a>
+        </div>
+      </header>
+
+      <section class="quiz-notice" aria-label="Quiz instructions">
+        <h2>Instructions</h2>
+        <p>
+          Predict the outcomes of the following experiments. You will have 40 minutes for
+          8 questions (5 minutes each). Each question changes the standard <code>d8</code>
+          setup from the assignment by applying its diff to the student repository
+          (<code>deep-learning-alchemy/assignments</code>, branch <code>a1_release</code>,
+          commit <code>baafc3f</code>). Briefly justify each prediction by citing your
+          assignment's experiments. You will get partial credit (up to 75% of the value of
+          the problem) if your rationale and citations are sound.
+        </p>
+        <h3>Grading and expectations</h3>
+        <p>
+          Outcome prediction is very difficult, even for experts. Do not panic if you do not
+          have confidence in getting 90+%. Our expectation is that strong students will maybe
+          be able to attain 80% and most scores will hover around 50%.
+        </p>
+        <p>
+          Due to the difficulty of this task, there are two sources of partial credit. For many
+          problems where exact numerical prediction is challenging, you will get partial credit
+          if you are only off by one cell. Each question's scoring line states whether this
+          applies and how many points it is worth. The form automatically grades answer choices
+          using these rules. Rationale credit is not auto-graded online.
+        </p>
+        <h3>Default setup</h3>
+        <p>
+          The standard setup of the Basics assignment: Llama-style architecture with 8 layers,
+          hidden size 512, 8 attention heads, a 4k vocab size tokenizer, and about 35M parameters
+          (<code>d8</code>); 614.4M training tokens of fresh data (no epoching); AdamW with
+          β<sub>1</sub>, β<sub>2</sub> = (0.9, 0.95), linear decay learning rate schedule with
+          1% linear warmup, learning rate 0.003, context length 1024, batch size 64, weight decay
+          0.1 (masked), and 1.0 grad clipping.
+        </p>
+      </section>
+
+      <noscript>
+        <div class="quiz-notice quiz-error">
+          JavaScript is required for the interactive form. You can still use the PDF handout.
+        </div>
+      </noscript>
+
+      <form id="quiz-form" novalidate>
+        <div id="quiz-questions"></div>
+
+        <section class="quiz-submit-card">
+          <div id="quiz-validation-error" class="quiz-validation-error" hidden role="alert"></div>
+          <label class="quiz-honor-check">
+            <input id="ready-to-submit" type="checkbox" required />
+            <span>I am ready to submit and reveal the answer key.</span>
+          </label>
+          <p>
+            Submitting reveals every answer and explanation. Your work is graded locally in
+            this browser and is not sent to the course staff.
+          </p>
+          <div class="quiz-submit-actions">
+            <button class="quiz-button quiz-button-primary" type="submit">Submit and grade</button>
+            <button class="quiz-button quiz-button-quiet" id="reset-quiz" type="button">Reset quiz</button>
+          </div>
+        </section>
+      </form>
+
+      <section id="quiz-results" class="quiz-results" hidden tabindex="-1" aria-live="polite">
+        <p class="quiz-kicker">Your result</p>
+        <h2 id="quiz-score">0 / 95</h2>
+        <p id="quiz-score-summary"></p>
+        <p>
+          This score covers answer choices only. Review your written reasoning against each
+          explanation below; rationale credit requires human evaluation.
+        </p>
+      </section>
+    </main>
+
+    <script src="quiz-basics.js"></script>
+  </body>
+</html>

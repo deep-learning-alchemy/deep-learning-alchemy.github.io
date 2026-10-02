@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Stanford CS 312 | Deep Learning Alchemy</title>
+    <title>Deep Learning Alchemy | Stanford CS 312</title>
     <meta
       name="description"
       content="Official course website for Stanford CS 312: Deep Learning Alchemy (Fall 2026), including logistics, schedule, assignments, and course materials."
@@ -92,6 +92,18 @@
             ...shuffle(children.slice(2)),
           );
           container.style.visibility = "visible";
+        }
+
+        const quizAnswerSlidesLink = document.getElementById(
+          "quiz-answer-slides-link",
+        );
+        if (quizAnswerSlidesLink) {
+          quizAnswerSlidesLink.addEventListener("click", (event) => {
+            const shouldContinue = window.confirm(
+              "Double-checking: did you actually attempt the quiz? These slides are for the quiz answers so only open them if you've attempted the quiz and want to see plots/commentary surrounding the answers.\n\nPress OK only if you still want to go forward.",
+            );
+            if (!shouldContinue) event.preventDefault();
+          });
         }
 
         /* const offeringsToggle = document.getElementById(
@@ -636,9 +648,9 @@ class Transformer(nn.Module):
         <colgroup>
           <col style="width: 5%" />
           <col style="width: 17%" />
-          <col style="width: 40%" />
-          <col style="width: 10%" />
-          <col style="width: 28%" />
+          <col style="width: 35%" />
+          <col style="width: 16%" />
+          <col style="width: 27%" />
         </colgroup>
         <thead>
           <tr class="active">
@@ -659,9 +671,9 @@ class Transformer(nn.Module):
           </tr>
           <tr>
             <td></td>
-            <td>Wed September 23, 5:00-7:00pm</td>
+            <td>Wed September 23</td>
             <td>LLMs 101 (Supplementary)</td>
-            <td><a href="assets/slides/llms_101_slides.pdf">slides</a>, <a href="assets/slides/llms_101_handout.pdf">handout</a></td>
+            <td><a href="assets/slides/llms_101_handout.pdf">handout</a>, <a href="assets/slides/llms_101_slides.pdf">slides</a></td>
           </tr>
           <tr>
             <td>2</td>
@@ -673,7 +685,7 @@ class Transformer(nn.Module):
             <td>3</td>
             <td>Tue September 29</td>
             <td><span class="schedule-label">Quiz</span>: Basics</td>
-            <td>TBA</td>
+            <td><a href="quiz-basics.html">quiz</a>, <a id="quiz-answer-slides-link" href="assets/quizzes/basics_answer_slides.pdf">slides</a></td>
             <td class="assignment-block" rowspan="3">Assignment 2 out (<a href="https://github.com/deep-learning-alchemy/assignments/tree/a2_release">code</a>, <a href="assets/assignments/a2_hyperparameter_scaling.pdf">pdf</a>)<span class="assignment-due-break"><br /></span> (due 10/07)</td>
           </tr>
           <tr>
