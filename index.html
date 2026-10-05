@@ -607,16 +607,13 @@ class Transformer(nn.Module):
 
         <p>If you are following along at home, you can access GPU compute from a cloud provider to complete the assignments.</p>
 
-        <p>Here are a few options (public pricing for a single B200 GPU on March 28, 2026):</p>
-
-        <ul>
-            <li><a href="https://modal.com">Modal</a>: <b>$6.25/hour</b>. Offers $30 of free monthly compute. You are only charged for actual compute (no idle resources) and their UX makes switching between local dev and
-          large-scale gpu experiments simple. (<a href="https://modal.com/pricing">Modal Pricing</a>)</li>
-            <li><a href="https://lambda.ai">Lambda Labs</a>: <b>$6.69/hour</b> (<a href="https://lambda.ai/pricing">Lambda Pricing</a>)</li>
-            <li><a href="https://www.runpod.io">RunPod</a>: <b> $4.99/hour</b> (<a href="https://www.runpod.io/pricing">RunPod Pricing</a>)</li>
-            <li><a href="https://nebius.com/">Nebius</a>: <b>$5.50/hour</b> ($3.05/hour preemptible) (<a href="https://nebius.com/prices">Nebius Pricing</a>)</li>
-            <li><a href="https://www.together.ai/">Together</a>: <b>$7.49/hour</b>, minimum 8 GPUs, cheaper for longer commitments (<a href="https://www.together.ai/pricing#gpu-clusters">Together Pricing</a>)</li>
-        </ul>
+        <p>
+          For the d8 training runs used throughout the course, we typically use a single NVIDIA H100 on
+          <a href="https://modal.com">Modal</a>. As of October 2, 2026, Modal's public price for an H100 SXM5 is
+          <b>$3.95/hour</b>, billed per second. The Starter plan includes $30/month in compute credits, and you are
+          charged only for actual compute rather than idle resources.
+          (<a href="https://modal.com/pricing">Modal pricing</a>)
+        </p>
         <h3>Sponsor</h3>
         <p>
           We would like to thank <a href="https://modal.jobs/">Modal</a> for sponsoring compute for this class.
