@@ -630,15 +630,13 @@ class Transformer(nn.Module):
       </h2>
       <table class="table" style="margin-bottom: 10rem">
         <colgroup>
-          <col style="width: 5%" />
+          <col style="width: 10%" />
+          <col style="width: 50%" />
           <col style="width: 17%" />
-          <col style="width: 35%" />
-          <col style="width: 16%" />
-          <col style="width: 27%" />
+          <col style="width: 23%" />
         </colgroup>
         <thead>
           <tr class="active">
-            <th>#</th>
             <th>Date</th>
             <th>Description</th>
             <th>Materials</th>
@@ -647,147 +645,135 @@ class Transformer(nn.Module):
         </thead>
         <tbody>
           <tr>
-            <td>1</td>
-            <td>Tue September 22</td>
-            <td><span class="schedule-label">Lecture</span>: Introduction</td>
+            <td>Tue 9/22</td>
+            <td><span class="schedule-label">Lecture</span>: Introduction
+              <div class="schedule-topics">Prediction as understanding, the pre-training setting, the d8 model organism</div>
+            </td>
             <td><a href="assets/slides/lecture_01.pdf">slides</a></td>
             <td class="assignment-block" rowspan="3">Assignment 1 out (<a href="https://github.com/deep-learning-alchemy/assignments/tree/a1_release">code</a>, <a href="assets/assignments/a1_basics.pdf">pdf</a>)<span class="assignment-due-break"><br /></span> (due 09/28)</td>
           </tr>
           <tr>
-            <td></td>
-            <td>Wed September 23</td>
+            <td>Wed 9/23</td>
             <td>LLMs 101 (Supplementary)</td>
             <td><a href="assets/slides/llms_101_handout.pdf">handout</a>, <a href="assets/slides/llms_101_slides.pdf">slides</a></td>
           </tr>
           <tr>
-            <td>2</td>
-            <td>Thu September 24</td>
-            <td><span class="schedule-label">Lecture</span>: Basics</td>
+            <td>Thu 9/24</td>
+            <td><span class="schedule-label">Lecture</span>: Basics
+              <div class="schedule-topics">Hyperparameters, scaling laws, stochasticity, debugging</div>
+              <div class="schedule-readings"><span class="schedule-readings-label">Readings</span><a href="https://arxiv.org/abs/2503.04715">Step Law</a> &middot; <a href="https://arxiv.org/abs/2001.08361">Kaplan et al. (2020)</a> &middot; <a href="https://arxiv.org/abs/2103.04514">Summers &amp; Dinneen (2021)</a></div>
+            </td>
             <td><a href="assets/slides/lecture_02.pdf">slides</a></td>
           </tr>
           <tr>
-            <td>3</td>
-            <td>Tue September 29</td>
+            <td>Tue 9/29</td>
             <td><span class="schedule-label">Quiz</span>: Basics</td>
             <td><a href="quiz-basics.html">quiz</a>, <a id="quiz-answer-slides-link" href="assets/quizzes/basics_answer_slides.pdf">slides</a></td>
             <td class="assignment-block" rowspan="3">Assignment 2 out (<a href="https://github.com/deep-learning-alchemy/assignments/tree/a2_release">code</a>, <a href="assets/assignments/a2_hyperparameter_scaling.pdf">pdf</a>)<span class="assignment-due-break"><br /></span> (due 10/07)</td>
           </tr>
           <tr>
-            <td>4</td>
-            <td>Thu October 1</td>
-            <td><span class="schedule-label">Lecture</span>: Optimization 1</td>
-            <td><a href="assets/slides/lecture_03.pdf">slides</a></td>
+            <td>Thu 10/1</td>
+            <td><span class="schedule-label">Lecture</span>: Optimization 1
+              <div class="schedule-topics">Anatomy of an optimizer, the noisy quadratic model, norms and weight decay</div>
+              <div class="schedule-readings"><span class="schedule-readings-label">Readings</span><a href="https://arxiv.org/abs/1907.04164">Zhang et al. (2019)</a> &middot; <a href="https://whenwen.github.io/wd_blog/public/weight-decay-part-2.html">Weight decay blog</a> &middot; <a href="https://arxiv.org/abs/2606.16899">Hyperball</a></div>
+            </td>
+            <td><a href="assets/slides/lecture_03.pdf">slides</a>, <a href="assets/slides/lecture_03.pptx">pptx</a></td>
           </tr>
           <tr>
-            <td></td>
-            <td>Tue October 6</td>
-            <td><span class="schedule-label">Lecture</span>: Optimization 1</td>
-            <td>TBA</td>
+            <td>Tue 10/6</td>
+            <td><span class="schedule-label">Lecture</span>: Optimization 1
+              <div class="schedule-topics">Scaling limits and feature learning, &micro;P, Muon</div>
+              <div class="schedule-readings"><span class="schedule-readings-label">Readings</span><a href="https://arxiv.org/abs/2407.05872">Everett et al. (2024)</a> &middot; <a href="https://arxiv.org/abs/2203.03466">Tensor Programs V</a> &middot; <a href="https://kellerjordan.github.io/posts/muon/">Muon</a></div>
+            </td>
+            <td><a href="assets/slides/lecture_04.pdf">slides</a></td>
           </tr>
           <tr>
-            <td>5</td>
-            <td>Thu October 8</td>
+            <td>Thu 10/8</td>
             <td><span class="schedule-label">Quiz</span>: Optimization 1</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="3">Assignment 3 out<span class="assignment-due-break"><br /></span> (due 10/19)</td>
           </tr>
           <tr>
-            <td>6</td>
-            <td>Tue October 13</td>
+            <td>Tue 10/13</td>
             <td><span class="schedule-label">Lecture</span>: Optimization 2</td>
             <td>TBA</td>
           </tr>
           <tr>
-            <td></td>
-            <td>Thu October 15</td>
+            <td>Thu 10/15</td>
             <td><span class="schedule-label">Lecture</span>: Optimization 2</td>
             <td>TBA</td>
           </tr>
           <tr>
-            <td>7</td>
-            <td>Tue October 20</td>
+            <td>Tue 10/20</td>
             <td><span class="schedule-label">Quiz</span>: Optimization 2</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="3">Assignment 4 out<span class="assignment-due-break"><br /></span> (due 10/28)</td>
           </tr>
           <tr>
-            <td>8</td>
-            <td>Thu October 22</td>
+            <td>Thu 10/22</td>
             <td><span class="schedule-label">Lecture</span>: Architecture 1</td>
             <td>TBA</td>
           </tr>
           <tr>
-            <td></td>
-            <td>Tue October 27</td>
+            <td>Tue 10/27</td>
             <td><span class="schedule-label">Lecture</span>: Architecture 1</td>
             <td>TBA</td>
           </tr>
           <tr>
-            <td>9</td>
-            <td>Thu October 29</td>
+            <td>Thu 10/29</td>
             <td><span class="schedule-label">Quiz</span>: Architecture 1</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="3">Assignment 5 out<span class="assignment-due-break"><br /></span> (due 11/09)</td>
           </tr>
           <tr>
-            <td></td>
-            <td>Tue November 3</td>
+            <td>Tue 11/3</td>
             <td><i>No class (Democracy Day)</i></td>
             <td></td>
           </tr>
           <tr>
-            <td>10</td>
-            <td>Thu November 5</td>
+            <td>Thu 11/5</td>
             <td><span class="schedule-label">Lecture</span>: Architecture 2</td>
             <td>TBA</td>
           </tr>
           <tr>
-            <td>11</td>
-            <td>Tue November 10</td>
+            <td>Tue 11/10</td>
             <td><span class="schedule-label">Quiz</span>: Architecture 2</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="3">Assignment 6 out<span class="assignment-due-break"><br /></span> (due 11/18)</td>
           </tr>
           <tr>
-            <td>12</td>
-            <td>Thu November 12</td>
+            <td>Thu 11/12</td>
             <td><span class="schedule-label">Lecture</span>: Generalization</td>
             <td>TBA</td>
           </tr>
           <tr>
-            <td></td>
-            <td>Tue November 17</td>
+            <td>Tue 11/17</td>
             <td><span class="schedule-label">Lecture</span>: Generalization</td>
             <td>TBA</td>
           </tr>
           <tr>
-            <td>13</td>
-            <td>Thu November 19</td>
+            <td>Thu 11/19</td>
             <td><span class="schedule-label">Quiz</span>: Generalization</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="4">Assignment 7 out<span class="assignment-due-break"><br /></span> (due 12/02)</td>
           </tr>
           <tr>
-            <td></td>
-            <td>Tue November 24</td>
+            <td>Tue 11/24</td>
             <td><i>No class (Thanksgiving Recess)</i></td>
             <td></td>
           </tr>
           <tr>
-            <td></td>
-            <td>Thu November 26</td>
+            <td>Thu 11/26</td>
             <td><i>No class (Thanksgiving Recess)</i></td>
             <td></td>
           </tr>
           <tr>
-            <td>14</td>
-            <td>Tue December 1</td>
+            <td>Tue 12/1</td>
             <td><span class="schedule-label">Lecture</span>: Exotic</td>
             <td>TBA</td>
           </tr>
           <tr>
-            <td>15</td>
-            <td>Thu December 3</td>
+            <td>Thu 12/3</td>
             <td><span class="schedule-label">Quiz</span>: Exotic</td>
             <td>TBA</td>
             <td></td>
