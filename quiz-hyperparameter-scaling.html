@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="quiz-basics.css" />
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [["$", "$"], ["\\(", "\\)"]] },
+        options: { skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"] },
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
   <body class="quiz-page">
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -50,13 +57,13 @@
           The standard setup of the Hyperparameter Scaling assignment: Llama-style architecture with 8 layers,
           hidden size 512, 8 attention heads, QK-norm, unscaled RoPE, a 4k vocab tokenizer, and about 35M
           parameters (<code>d8</code>); fresh data with the token budget stated in each question; AdamW with
-          β<sub>1</sub>, β<sub>2</sub> = (0.9, 0.95) and ε = 10<sup>−8</sup>, linear decay with 1% linear warmup,
+          $\beta_1, \beta_2 = (0.9, 0.95)$ and $\epsilon = 10^{-8}$, linear decay with 1% linear warmup,
           peak learning rate 0.003, context length 1024, batch size 64, weight decay 0.1 (masked), and 1.0 grad
           clipping; model and data seed 42. Lower validation loss is better.
         </p>
         <h3>Conventions</h3>
         <ul>
-          <li><strong>Fitted optimum:</strong> the vertex of the quadratic in log(LR) through the best sampled LR and its two grid neighbours.</li>
+          <li><strong>Fitted optimum:</strong> the vertex of the quadratic in $\log(\mathrm{LR})$ through the best sampled LR and its two grid neighbours.</li>
           <li><strong>Transfer penalty:</strong> the loss at a transferred LR minus the fitted minimum loss of the target curve.</li>
         </ul>
       </section>
