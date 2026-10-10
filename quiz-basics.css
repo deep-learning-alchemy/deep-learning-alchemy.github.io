@@ -198,6 +198,14 @@
   margin-bottom: 16px;
 }
 
+.quiz-prompt-image {
+  display: block;
+  height: auto;
+  margin: 16px auto;
+  max-width: 700px;
+  width: 100%;
+}
+
 .quiz-diff {
   background: #fff;
   border: 1px solid #ddd;
@@ -470,6 +478,12 @@
   width: 100%;
 }
 
+.quiz-rationale-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .quiz-scoring-note {
   color: var(--quiz-muted);
   font-size: 14px;
@@ -591,5 +605,9 @@
   .quiz-check-option {
     margin-left: -1px;
     margin-top: -1px;
+  }
+
+  .quiz-rationale-grid {
+    grid-template-columns: 1fr;
   }
 }

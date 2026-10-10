@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deep Learning Alchemy | Hyperparameter Scaling Prediction Quiz</title>
+    <meta name="description" content="Take the CS 312 Hyperparameter Scaling outcome-prediction quiz." />
+    <link rel="icon" type="image/png" href="/assets/images/alchemy_mock.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="quiz-basics.css" />
+  </head>
+  <body class="quiz-page">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand brand" href="/">
+            <img class="brand-icon" src="/assets/images/alchemy_mock.png" alt="" width="28" height="28" />
+            <span>CS 312</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container quiz-shell">
+      <header class="quiz-hero">
+        <h1>Outcome Prediction Quiz: Hyperparameter Scaling</h1>
+        <p class="quiz-meta">140 points · 7 questions</p>
+        <div class="quiz-actions">
+          <a class="quiz-button quiz-button-secondary" href="assets/quizzes/hyperparameter_scaling_prediction_quiz.pdf" target="_blank" rel="noopener">View in PDF form</a>
+        </div>
+      </header>
+
+      <section class="quiz-notice" aria-label="Quiz instructions">
+        <h2>Instructions</h2>
+        <p>
+          Predict the outcomes of the following experiments. <strong>From the assignment</strong> restates,
+          for reference, the assignment setting the question starts from; nothing in it is new.
+          <strong>This question changes</strong> lists every difference from that setup. Everything not listed
+          there is unchanged.
+        </p>
+        <p>
+          Check one answer in every row. The correct option earns full points, and an adjacent interval earns
+          half. Each question has three rationale fields: the assignment problem you cite, what that experiment
+          showed (with numbers), and why it implies your answer. Detailed proper citation, with experimental
+          details and sound rationale, can return 75% of missed points on a question.
+        </p>
+        <h3>Default setup</h3>
+        <p>
+          The standard setup of the Hyperparameter Scaling assignment: Llama-style architecture with 8 layers,
+          hidden size 512, 8 attention heads, QK-norm, unscaled RoPE, a 4k vocab tokenizer, and about 35M
+          parameters (<code>d8</code>); fresh data with the token budget stated in each question; AdamW with
+          β<sub>1</sub>, β<sub>2</sub> = (0.9, 0.95) and ε = 10<sup>−8</sup>, linear decay with 1% linear warmup,
+          peak learning rate 0.003, context length 1024, batch size 64, weight decay 0.1 (masked), and 1.0 grad
+          clipping; model and data seed 42. Lower validation loss is better.
+        </p>
+        <h3>Conventions</h3>
+        <ul>
+          <li><strong>Fitted optimum:</strong> the vertex of the quadratic in log(LR) through the best sampled LR and its two grid neighbours.</li>
+          <li><strong>Transfer penalty:</strong> the loss at a transferred LR minus the fitted minimum loss of the target curve.</li>
+        </ul>
+      </section>
+
+      <noscript><div class="quiz-notice quiz-error">JavaScript is required for the interactive form. You can still use the PDF handout.</div></noscript>
+
+      <form id="quiz-form" novalidate>
+        <div id="quiz-questions"></div>
+        <section class="quiz-submit-card">
+          <div id="quiz-validation-error" class="quiz-validation-error" hidden role="alert"></div>
+          <label class="quiz-honor-check">
+            <input id="ready-to-submit" type="checkbox" required />
+            <span>I am ready to submit and reveal the answer key.</span>
+          </label>
+          <p>Submitting reveals every answer and explanation. Your work is graded locally in this browser and is not sent to the course staff.</p>
+          <div class="quiz-submit-actions">
+            <button class="quiz-button quiz-button-primary" type="submit">Submit quiz</button>
+            <button class="quiz-button quiz-button-quiet" id="reset-quiz" type="button">Reset quiz</button>
+          </div>
+        </section>
+      </form>
+
+      <section id="quiz-results" class="quiz-results" hidden tabindex="-1" aria-live="polite">
+        <p class="quiz-kicker">Your result</p>
+        <h2 id="quiz-score">0 / 140</h2>
+        <p id="quiz-score-summary"></p>
+        <p>This score covers answer choices only. Rationale credit requires human evaluation.</p>
+      </section>
+    </main>
+
+    <script src="quiz-hyperparameter-scaling.js"></script>
+  </body>
+</html>

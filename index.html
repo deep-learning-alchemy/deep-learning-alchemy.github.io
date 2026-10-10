@@ -94,17 +94,14 @@
           container.style.visibility = "visible";
         }
 
-        const quizAnswerSlidesLink = document.getElementById(
-          "quiz-answer-slides-link",
-        );
-        if (quizAnswerSlidesLink) {
+        document.querySelectorAll("[data-answer-slides]").forEach((quizAnswerSlidesLink) => {
           quizAnswerSlidesLink.addEventListener("click", (event) => {
             const shouldContinue = window.confirm(
               "Double-checking: did you actually attempt the quiz? These slides are for the quiz answers so only open them if you've attempted the quiz and want to see plots/commentary surrounding the answers.\n\nPress OK only if you still want to go forward.",
             );
             if (!shouldContinue) event.preventDefault();
           });
-        }
+        });
 
         /* const offeringsToggle = document.getElementById(
           "toggle-previous-offerings",
@@ -312,16 +309,12 @@
           <li>
             <b>Office hours for the first three weeks:</b>
             <ul>
-              <li><b>Tatsu:</b> Mondays, 9:00-10:00am in Gates 364</li>
               <li>
                 <b>Kaiyue:</b> Fridays, 3:00-4:00pm on Zoom (link will be
                 shared on Slack)
               </li>
               <li>
-                <b>Tristan:</b> Wednesdays, 8:45-9:45am in the Huang basement
-              </li>
-              <li>
-                <b>Suhas:</b> Saturdays, 1:00-2:00pm in Gates 381
+                <b>Suhas:</b> Tuesdays, 10:00-11:00am in the Gates 3B kitchen
               </li>
             </ul>
           </li>
@@ -551,13 +544,13 @@ class Transformer(nn.Module):
           </div>
         </details>
         <h3>Assignments</h3>
-        <p><i>Current assignment topics are tentative.</i> Assignments 1 through 4 will study language model pre-training at a small scale reflective of larger-scale phenomena. Assignments 5 through 7 will switch to DNA.</p>
+        <p><i>Current assignment topics are tentative.</i> Assignments 1 through 5 will study language model pre-training at a small scale reflective of larger-scale phenomena. Starting with Assignment 6, we will switch to a new modality: DNA.</p>
         <ol>
           <li>Basics: Hyperparameter tuning and scaling</li>
           <li>Optimization 1: Hyperparameter invariants</li>
-          <li>Optimization 2: Sharp and flat basins</li>
-          <li>Architecture 1: Extending model capacity</li>
+          <li>Loss Landscape: Sharp and flat basins</li>
           <li>Architecture 2: Stability across depth/time</li>
+          <li>Architecture 1: Extending model capacity</li>
           <li>Generalization: Data-efficient algorithms</li>
           <li>Exotic: ???</li>
         </ol>
@@ -668,7 +661,7 @@ class Transformer(nn.Module):
           <tr>
             <td>Tue 9/29</td>
             <td><span class="schedule-label">Quiz</span>: Basics</td>
-            <td><a href="quiz-basics.html">quiz</a>, <a id="quiz-answer-slides-link" href="assets/quizzes/basics_answer_slides.pdf">slides</a></td>
+            <td><a href="quiz-basics.html">quiz</a>, <a data-answer-slides href="assets/quizzes/basics_answer_slides.pdf">slides</a></td>
             <td class="assignment-block" rowspan="3">Assignment 2 out (<a href="https://github.com/deep-learning-alchemy/assignments/tree/a2_release">code</a>, <a href="assets/assignments/a2_hyperparameter_scaling.pdf">pdf</a>)<span class="assignment-due-break"><br /></span> (due 10/07)</td>
           </tr>
           <tr>
@@ -690,38 +683,38 @@ class Transformer(nn.Module):
           <tr>
             <td>Thu 10/8</td>
             <td><span class="schedule-label">Quiz</span>: Optimization 1</td>
-            <td>TBA</td>
+            <td><a href="quiz-hyperparameter-scaling.html">quiz</a>, <a data-answer-slides href="assets/quizzes/hyperparameter_scaling_answer_slides.pdf">slides</a></td>
             <td class="assignment-block" rowspan="3">Assignment 3 out (<a href="https://github.com/deep-learning-alchemy/assignments/tree/a3_release">code</a>, <a href="assets/assignments/a3_optimization2.pdf">pdf</a>)<span class="assignment-due-break"><br /></span> (due 10/20, 1:00pm)</td>
           </tr>
           <tr>
             <td>Tue 10/13</td>
-            <td><span class="schedule-label">Lecture</span>: Optimization 2</td>
+            <td><span class="schedule-label">Lecture</span>: Loss Landscape</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>Thu 10/15</td>
-            <td><span class="schedule-label">Lecture</span>: Optimization 2</td>
+            <td><span class="schedule-label">Lecture</span>: Loss Landscape</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>Tue 10/20</td>
-            <td><span class="schedule-label">Quiz</span>: Optimization 2</td>
+            <td><span class="schedule-label">Quiz</span>: Loss Landscape</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="3">Assignment 4 out<span class="assignment-due-break"><br /></span> (due 10/29, 1:00pm)</td>
           </tr>
           <tr>
             <td>Thu 10/22</td>
-            <td><span class="schedule-label">Lecture</span>: Architecture 1</td>
+            <td><span class="schedule-label">Lecture</span>: Architecture 2</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>Tue 10/27</td>
-            <td><span class="schedule-label">Lecture</span>: Architecture 1</td>
+            <td><span class="schedule-label">Lecture</span>: Architecture 2</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>Thu 10/29</td>
-            <td><span class="schedule-label">Quiz</span>: Architecture 1</td>
+            <td><span class="schedule-label">Quiz</span>: Architecture 2</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="3">Assignment 5 out<span class="assignment-due-break"><br /></span> (due 11/10, 1:00pm)</td>
           </tr>
@@ -732,12 +725,12 @@ class Transformer(nn.Module):
           </tr>
           <tr>
             <td>Thu 11/5</td>
-            <td><span class="schedule-label">Lecture</span>: Architecture 2</td>
+            <td><span class="schedule-label">Lecture</span>: Architecture 1</td>
             <td>TBA</td>
           </tr>
           <tr>
             <td>Tue 11/10</td>
-            <td><span class="schedule-label">Quiz</span>: Architecture 2</td>
+            <td><span class="schedule-label">Quiz</span>: Architecture 1</td>
             <td>TBA</td>
             <td class="assignment-block" rowspan="3">Assignment 6 out<span class="assignment-due-break"><br /></span> (due 11/19, 1:00pm)</td>
           </tr>
