@@ -213,13 +213,6 @@ h3 {
   color: #999;
 }
 
-#schedule .schedule-readings-label {
-  font-size: 0.8em;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-right: 0.6em;
-}
-
 .example-code-dropdown {
   margin: 12px 0;
 }
