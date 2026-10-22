@@ -94,17 +94,14 @@
           container.style.visibility = "visible";
         }
 
-        const quizAnswerSlidesLink = document.getElementById(
-          "quiz-answer-slides-link",
-        );
-        if (quizAnswerSlidesLink) {
+        document.querySelectorAll("[data-answer-slides]").forEach((quizAnswerSlidesLink) => {
           quizAnswerSlidesLink.addEventListener("click", (event) => {
             const shouldContinue = window.confirm(
               "Double-checking: did you actually attempt the quiz? These slides are for the quiz answers so only open them if you've attempted the quiz and want to see plots/commentary surrounding the answers.\n\nPress OK only if you still want to go forward.",
             );
             if (!shouldContinue) event.preventDefault();
           });
-        }
+        });
 
         /* const offeringsToggle = document.getElementById(
           "toggle-previous-offerings",
@@ -310,20 +307,7 @@
             <b>Recordings:</b> TBA (All recordings and class materials will be made public)
           </li>
           <li>
-            <b>Office hours for the first three weeks:</b>
-            <ul>
-              <li><b>Tatsu:</b> Mondays, 9:00-10:00am in Gates 364</li>
-              <li>
-                <b>Kaiyue:</b> Fridays, 3:00-4:00pm on Zoom (link will be
-                shared on Slack)
-              </li>
-              <li>
-                <b>Tristan:</b> Wednesdays, 8:45-9:45am in the Huang basement
-              </li>
-              <li>
-                <b>Suhas:</b> Saturdays, 1:00-2:00pm in Gates 381
-              </li>
-            </ul>
+            <b>Office hours:</b> Tuesdays, 10:00-11:00am (Suhas), Gates 392
           </li>
           <!-- <li>
             <b>Contact:</b> TBA
@@ -551,13 +535,13 @@ class Transformer(nn.Module):
           </div>
         </details>
         <h3>Assignments</h3>
-        <p><i>Current assignment topics are tentative.</i> Assignments 1 through 4 will study language model pre-training at a small scale reflective of larger-scale phenomena. Assignments 5 through 7 will switch to DNA.</p>
+        <p><i>Current assignment topics are tentative.</i> Assignments 1 through 5 will study language model pre-training at a small scale reflective of larger-scale phenomena. Starting with Assignment 6, we will switch to a new modality: DNA.</p>
         <ol>
           <li>Basics: Hyperparameter tuning and scaling</li>
           <li>Optimization 1: Hyperparameter invariants</li>
-          <li>Optimization 2: Sharp and flat basins</li>
-          <li>Architecture 1: Extending model capacity</li>
-          <li>Architecture 2: Stability across depth/time</li>
+          <li>Optimization 2: Loss landscapes</li>
+          <li>Architecture 1: Stability across depth/time</li>
+          <li>Architecture 2: Extending model capacity</li>
           <li>Generalization: Data-efficient algorithms</li>
           <li>Exotic: ???</li>
         </ol>
@@ -661,21 +645,21 @@ class Transformer(nn.Module):
             <td>Thu 9/24</td>
             <td><span class="schedule-label">Lecture</span>: Basics
               <div class="schedule-topics">Hyperparameters, scaling laws, stochasticity, debugging</div>
-              <div class="schedule-readings"><span class="schedule-readings-label">Readings</span><a href="https://arxiv.org/abs/2503.04715">Step Law</a> &middot; <a href="https://arxiv.org/abs/2001.08361">Kaplan et al. (2020)</a> &middot; <a href="https://arxiv.org/abs/2103.04514">Summers &amp; Dinneen (2021)</a></div>
+              <div class="schedule-readings"><a href="https://arxiv.org/abs/2503.04715">Step Law</a> &middot; <a href="https://arxiv.org/abs/2001.08361">Kaplan et al. (2020)</a> &middot; <a href="https://arxiv.org/abs/2103.04514">Summers &amp; Dinneen (2021)</a></div>
             </td>
             <td><a href="assets/slides/lecture_02.pdf">slides</a></td>
           </tr>
           <tr>
             <td>Tue 9/29</td>
             <td><span class="schedule-label">Quiz</span>: Basics</td>
-            <td><a href="quiz-basics.html">quiz</a>, <a id="quiz-answer-slides-link" href="assets/quizzes/basics_answer_slides.pdf">slides</a></td>
+            <td><a href="quiz-basics.html">quiz</a>, <a data-answer-slides href="assets/quizzes/basics_answer_slides.pdf">slides</a></td>
             <td class="assignment-block" rowspan="3">Assignment 2 out (<a href="https://github.com/deep-learning-alchemy/assignments/tree/a2_release">code</a>, <a href="assets/assignments/a2_hyperparameter_scaling.pdf">pdf</a>)<span class="assignment-due-break"><br /></span> (due 10/07)</td>
           </tr>
           <tr>
             <td>Thu 10/1</td>
             <td><span class="schedule-label">Lecture</span>: Optimization 1
               <div class="schedule-topics">Anatomy of an optimizer, the noisy quadratic model, norms and weight decay</div>
-              <div class="schedule-readings"><span class="schedule-readings-label">Readings</span><a href="https://arxiv.org/abs/1907.04164">Zhang et al. (2019)</a> &middot; <a href="https://whenwen.github.io/wd_blog/public/weight-decay-part-2.html">Weight decay blog</a> &middot; <a href="https://arxiv.org/abs/2606.16899">Hyperball</a></div>
+              <div class="schedule-readings"><a href="https://arxiv.org/abs/1907.04164">Zhang et al. (2019)</a> &middot; <a href="https://whenwen.github.io/wd_blog/public/weight-decay-part-2.html">Weight decay blog</a> &middot; <a href="https://arxiv.org/abs/2606.16899">Hyperball</a></div>
             </td>
             <td><a href="assets/slides/lecture_03.pdf">slides</a>, <a href="assets/slides/lecture_03.pptx">pptx</a></td>
           </tr>
@@ -683,31 +667,37 @@ class Transformer(nn.Module):
             <td>Tue 10/6</td>
             <td><span class="schedule-label">Lecture</span>: Optimization 1
               <div class="schedule-topics">Scaling limits and feature learning, &micro;P, Muon</div>
-              <div class="schedule-readings"><span class="schedule-readings-label">Readings</span><a href="https://arxiv.org/abs/2407.05872">Everett et al. (2024)</a> &middot; <a href="https://arxiv.org/abs/2203.03466">Tensor Programs V</a> &middot; <a href="https://kellerjordan.github.io/posts/muon/">Muon</a></div>
+              <div class="schedule-readings"><a href="https://arxiv.org/abs/2407.05872">Everett et al. (2024)</a> &middot; <a href="https://arxiv.org/abs/2203.03466">Tensor Programs V</a> &middot; <a href="https://kellerjordan.github.io/posts/muon/">Muon</a></div>
             </td>
             <td><a href="assets/slides/lecture_04.pdf">slides</a></td>
           </tr>
           <tr>
             <td>Thu 10/8</td>
             <td><span class="schedule-label">Quiz</span>: Optimization 1</td>
-            <td>TBA</td>
-            <td class="assignment-block" rowspan="3">Assignment 3 out<span class="assignment-due-break"><br /></span> (due 10/20, 1:30pm)</td>
+            <td><a href="quiz-hyperparameter-scaling.html">quiz</a>, <a data-answer-slides href="assets/quizzes/hyperparameter_scaling_answer_slides.pdf">slides</a></td>
+            <td class="assignment-block" rowspan="3">Assignment 3 out (<a href="https://github.com/deep-learning-alchemy/assignments/tree/a3_release">code</a>, <a href="assets/assignments/a3_optimization2.pdf">pdf</a>)<span class="assignment-due-break"><br /></span> (due 10/20, 1:00pm)</td>
           </tr>
           <tr>
             <td>Tue 10/13</td>
-            <td><span class="schedule-label">Lecture</span>: Optimization 2</td>
-            <td>TBA</td>
+            <td><span class="schedule-label">Lecture</span>: Optimization 2
+              <div class="schedule-topics">Loss basins, river valley, saddle points</div>
+              <div class="schedule-readings"><a href="https://arxiv.org/abs/1802.10026" title="Loss Surfaces, Mode Connectivity, and Fast Ensembling of DNNs">Mode connectivity</a> &middot; <a href="https://arxiv.org/abs/2410.05192" title="Understanding Warmup-Stable-Decay Learning Rates: A River Valley Loss Landscape Perspective">River valley</a> &middot; <a href="https://arxiv.org/abs/1406.2572" title="Identifying and attacking the saddle point problem in high-dimensional non-convex optimization">Dauphin et al. (2014)</a></div>
+            </td>
+            <td><a href="assets/slides/lecture_05.pdf">slides</a></td>
           </tr>
           <tr>
             <td>Thu 10/15</td>
-            <td><span class="schedule-label">Lecture</span>: Optimization 2</td>
-            <td>TBA</td>
+            <td><span class="schedule-label">Lecture</span>: Optimization 2
+              <div class="schedule-topics">Sharpness, self-stabilization, flat minima</div>
+              <div class="schedule-readings"><a href="https://arxiv.org/abs/2103.00065" title="Gradient Descent on Neural Networks Typically Occurs at the Edge of Stability">Edge of Stability</a> &middot; <a href="https://arxiv.org/abs/2410.24206" title="Understanding Optimization in Deep Learning with Central Flows">Central Flows</a> &middot; <a href="https://arxiv.org/abs/2010.01412" title="Sharpness-Aware Minimization for Efficiently Improving Generalization">SAM</a></div>
+            </td>
+            <td><a href="assets/slides/lecture_06.pdf">slides</a>, <a href="assets/slides/lecture_06.pptx">pptx</a></td>
           </tr>
           <tr>
             <td>Tue 10/20</td>
             <td><span class="schedule-label">Quiz</span>: Optimization 2</td>
             <td>TBA</td>
-            <td class="assignment-block" rowspan="3">Assignment 4 out<span class="assignment-due-break"><br /></span> (due 10/29, 1:30pm)</td>
+            <td class="assignment-block" rowspan="3">Assignment 4 out (<a href="https://github.com/deep-learning-alchemy/assignments/tree/a4_release">code</a>, <a href="assets/assignments/a4_architecture1.pdf">pdf</a>)<span class="assignment-due-break"><br /></span> (due 10/29, 1:00pm)</td>
           </tr>
           <tr>
             <td>Thu 10/22</td>
@@ -723,7 +713,7 @@ class Transformer(nn.Module):
             <td>Thu 10/29</td>
             <td><span class="schedule-label">Quiz</span>: Architecture 1</td>
             <td>TBA</td>
-            <td class="assignment-block" rowspan="3">Assignment 5 out<span class="assignment-due-break"><br /></span> (due 11/10, 1:30pm)</td>
+            <td class="assignment-block" rowspan="3">Assignment 5 out<span class="assignment-due-break"><br /></span> (due 11/10, 1:00pm)</td>
           </tr>
           <tr>
             <td>Tue 11/3</td>
@@ -739,7 +729,7 @@ class Transformer(nn.Module):
             <td>Tue 11/10</td>
             <td><span class="schedule-label">Quiz</span>: Architecture 2</td>
             <td>TBA</td>
-            <td class="assignment-block" rowspan="3">Assignment 6 out<span class="assignment-due-break"><br /></span> (due 11/19, 1:30pm)</td>
+            <td class="assignment-block" rowspan="3">Assignment 6 out<span class="assignment-due-break"><br /></span> (due 11/19, 1:00pm)</td>
           </tr>
           <tr>
             <td>Thu 11/12</td>
@@ -755,7 +745,7 @@ class Transformer(nn.Module):
             <td>Thu 11/19</td>
             <td><span class="schedule-label">Quiz</span>: Generalization</td>
             <td>TBA</td>
-            <td class="assignment-block" rowspan="4">Assignment 7 out<span class="assignment-due-break"><br /></span> (due 12/03, 1:30pm)</td>
+            <td class="assignment-block" rowspan="4">Assignment 7 out<span class="assignment-due-break"><br /></span> (due 12/03, 1:00pm)</td>
           </tr>
           <tr>
             <td>Tue 11/24</td>
