@@ -361,6 +361,7 @@
   justify-content: center;
   margin: -9px -8px;
   min-height: 48px;
+  position: relative;
 }
 
 .quiz-table-choice:hover {

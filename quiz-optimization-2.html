@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deep Learning Alchemy | Optimization 2 Prediction Quiz</title>
+    <meta name="description" content="Take the CS 312 Optimization 2 outcome-prediction quiz." />
+    <link rel="icon" type="image/png" href="/assets/images/alchemy_mock.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="quiz-basics.css" />
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [["$", "$"], ["\\(", "\\)"]] },
+        options: { skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"] },
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body class="quiz-page">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand brand" href="/">
+            <img class="brand-icon" src="/assets/images/alchemy_mock.png" alt="" width="28" height="28" />
+            <span>CS 312</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container quiz-shell">
+      <header class="quiz-hero">
+        <h1>Outcome Prediction Quiz: Optimization 2</h1>
+        <p class="quiz-meta">130 points · 7 questions</p>
+        <div class="quiz-actions">
+          <a class="quiz-button quiz-button-secondary" href="assets/quizzes/optimization2_prediction_quiz.pdf" target="_blank" rel="noopener">View in PDF form</a>
+        </div>
+      </header>
+
+      <section class="quiz-notice" aria-label="Quiz instructions">
+        <h2>Instructions</h2>
+        <p>Predict the outcomes of the following experiments. Each question will have 3 instructions:</p>
+        <ul>
+          <li><strong>From the assignment</strong> provides some context, providing any needed information from the assignment.</li>
+          <li><strong>This question changes</strong> provides a natural language description of what is different from the assignment.</li>
+          <li><strong>The diff</strong> is the exact code that we run when creating the solution key (printed in Appendix A). It is a patch to the released A3 starter (<code>a3_release</code> at <code>57c60bb</code>). Each question below includes its diff.</li>
+        </ul>
+        <p>Check one box in every row. Options that are given as sketches are judged on matching shape; their axis values show rough magnitudes. Scoring: In rows whose options are ordinal choices, the adjacent option will receive half the maximal points. Each question has three rationale fields: the assignment problem you cite, what you observed in that experiment, and your rationale for choosing your answer based on those observations. Detailed proper citation, with experimental details and sound rationale can return 75% of missed points on a question.</p>
+        <h3>Default setup</h3>
+        <p>The standard setup of the Optimization 2 assignment: Llama-style architecture with 8 layers, hidden size 512, 8 attention heads, QK-norm, a 4k vocab size tokenizer, and about 35M parameters (<code>d8</code>); 614.4M training tokens (9,375 updates) of fresh data; AdamW with $\beta_1, \beta_2 = (0.9, 0.95)$ and $\epsilon = 10^{-8}$, linear decay learning rate schedule with 1% linear warmup (93 updates), peak learning rate .003, context length 1024, batch size 64, weight decay 0.1 (masked: hidden and readout matrices decay; embeddings and normalization gains do not), and 1.0 grad clipping; model and data seed 42. Lower validation loss is better. Seed-to-seed noise in the final validation loss is about .003.</p>
+        <h3>Conventions</h3>
+        <p>We follow the same conventions as the rest of A3.</p>
+        <ul>
+          <li><strong><code>wsdX</code> schedule:</strong> after the warmup, the peak LR is held constant and then decays linearly to zero over the final fraction $X$ of training (<code>wsd0.2</code> decays from update 7,500).</li>
+          <li><strong>Regret (Problem 2(c)):</strong> a run’s validation loss minus the control run’s at the same update.</li>
+          <li><strong>Sharpness:</strong> $\lambda_{\max}$ is the top eigenvalue of the loss Hessian, measured in FP32 on the 64-sequence held-out probe. A family block is the Hessian restricted to one parameter family (embedding, attention, MLP, RMSNorm gains, LM head), as in Problem 4(a).</li>
+          <li><strong>Full-batch runs (Problem 3(a)):</strong> plain gradient descent on the first $N$ training sequences, embedding initialized $16\times$ larger, no clipping, no weight decay, constant LR $\eta$.</li>
+        </ul>
+      </section>
+
+      <noscript><div class="quiz-notice quiz-error">JavaScript is required for the interactive form. You can still use the PDF handout.</div></noscript>
+      <form id="quiz-form" novalidate>
+        <div id="quiz-questions"></div>
+        <section class="quiz-submit-card">
+          <div id="quiz-validation-error" class="quiz-validation-error" hidden role="alert"></div>
+          <label class="quiz-honor-check">
+            <input id="ready-to-submit" type="checkbox" required />
+            <span>I am ready to submit and reveal the answer key.</span>
+          </label>
+          <p>Submitting reveals every answer and explanation. Your work is graded locally in this browser and is not sent to the course staff.</p>
+          <div class="quiz-submit-actions">
+            <button class="quiz-button quiz-button-primary" type="submit">Submit quiz</button>
+            <button class="quiz-button quiz-button-quiet" id="reset-quiz" type="button">Reset quiz</button>
+          </div>
+        </section>
+      </form>
+
+      <section id="quiz-results" class="quiz-results" hidden tabindex="-1" aria-live="polite">
+        <p class="quiz-kicker">Your result</p>
+        <h2 id="quiz-score">0 / 130</h2>
+        <p id="quiz-score-summary"></p>
+        <p>This score covers answer choices only. Rationale credit requires human evaluation.</p>
+        <a class="quiz-button quiz-button-secondary" href="assets/quizzes/optimization2_solutions.pdf" target="_blank" rel="noopener">View full solutions in PDF form</a>
+      </section>
+    </main>
+
+    <script src="quiz-optimization-2.js"></script>
+  </body>
+</html>
