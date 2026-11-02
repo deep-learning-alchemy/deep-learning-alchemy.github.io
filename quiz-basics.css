@@ -501,6 +501,22 @@
   width: 100%;
 }
 
+.quiz-ranking-input {
+  border: 1px solid var(--quiz-border);
+  box-sizing: border-box;
+  display: block;
+  font: inherit;
+  max-width: 520px;
+  padding: 10px 12px;
+  width: 100%;
+}
+
+.quiz-rationale-part {
+  display: block;
+  font-weight: normal;
+  margin-top: 12px;
+}
+
 .quiz-rationale-grid {
   display: grid;
   gap: 14px;
